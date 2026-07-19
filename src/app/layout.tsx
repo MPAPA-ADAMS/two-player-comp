@@ -3,8 +3,8 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "2 Player Competition",
-  description: "An eight-player tournament season.",
+  title: "T&A Competition",
+  description: "Prepare For The Ass Wiping Of Your Life. Bitch.",
 };
 
 export default function RootLayout({
@@ -17,8 +17,8 @@ export default function RootLayout({
       <body className="bg-zinc-950 text-white antialiased">
         <header className="border-b border-zinc-800">
           <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-            <Link href="/" className="text-lg font-bold">
-              2PC
+            <Link href="/" className="text-xl font-black tracking-tight">
+              T<span className="text-amber-400">&amp;</span>A
             </Link>
 
             <div className="flex gap-6 text-sm text-zinc-300">
