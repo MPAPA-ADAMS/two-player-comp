@@ -37,6 +37,7 @@ export default async function TournamentPage({ params }: TournamentPageProps) {
         tournament={tournament}
         tournaments={tournaments}
         players={players}
+        editable={false}
       />
     </main>
   );

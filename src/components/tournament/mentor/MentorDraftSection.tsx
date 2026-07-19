@@ -8,9 +8,10 @@ type Props = {
   players: Player[];
   groupAPlayerIds: string[];
   onPick: (playerId: string) => void;
+  editable?: boolean;
 };
 
-export default function MentorDraftSection({ draft, players, groupAPlayerIds, onPick }: Props) {
+export default function MentorDraftSection({ draft, players, groupAPlayerIds, onPick, editable = false }: Props) {
   const playerById = new Map(players.map((player) => [player.id, player]));
   const drafted = new Set(draft.picks.map((pick) => pick.playerId));
   const activeMentorId = draft.pickOrder[draft.picks.length];
@@ -53,7 +54,7 @@ export default function MentorDraftSection({ draft, players, groupAPlayerIds, on
         })}
       </div>
 
-      {!draft.completed && (
+      {!draft.completed && editable && (
         <div className="mt-6">
           <p className="text-xs font-black uppercase tracking-widest text-zinc-500">Available players</p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -65,6 +66,11 @@ export default function MentorDraftSection({ draft, players, groupAPlayerIds, on
             ))}
           </div>
         </div>
+      )}
+      {!draft.completed && !editable && (
+        <p className="mt-6 rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-sm text-zinc-400">
+          The mentor draft is currently being managed by an administrator.
+        </p>
       )}
     </section>
   );

@@ -30,12 +30,14 @@ type ReadyTournamentProps = {
   tournament: Tournament;
   players: Player[];
   nextTournamentGenerated?: boolean;
+  editable?: boolean;
 };
 
 export default function ReadyTournament({
   tournament,
   players,
   nextTournamentGenerated = false,
+  editable = false,
 }: ReadyTournamentProps) {
   const [activeTab, setActiveTab] = useState<TournamentTab>("A");
   const [hydrated, setHydrated] = useState(false);
@@ -136,13 +138,17 @@ export default function ReadyTournament({
         groupsGenerated={view.groupsGenerated}
         groupStageComplete={view.groupStageComplete}
         tournamentComplete={view.tournamentComplete}
-        onReset={handleReset}
+        onReset={editable ? handleReset : undefined}
       />
 
       {!hydrated ? (
         <TournamentLoadingState />
       ) : !view.groupsGenerated ? (
-        <GroupDraw players={players} onComplete={handleDrawComplete} />
+        editable ? (
+          <GroupDraw players={players} onComplete={handleDrawComplete} />
+        ) : (
+          <ReadOnlyWaitingState />
+        )
       ) : (
         <GeneratedGroupsOverview
           groupAStandings={view.groupAStandings}
@@ -161,6 +167,7 @@ export default function ReadyTournament({
               players={[...competition.groupAPlayers, ...competition.groupBPlayers]}
               groupAPlayerIds={competition.groupAPlayers.map((player) => player.id)}
               onPick={handleMentorPick}
+              editable={editable}
             />
           )}
 
@@ -187,7 +194,7 @@ export default function ReadyTournament({
               activeStandings={activeStandings}
               activePlayers={activePlayers}
               bestOf={tournament.bestOf}
-              editable={view.groupMatchesEditable}
+              editable={editable && view.groupMatchesEditable}
               onMatchUpdate={handleGroupMatchUpdate}
             />
           )}
@@ -198,8 +205,8 @@ export default function ReadyTournament({
                 semifinals={competition.semifinals}
                 finalMatch={competition.finalMatch}
                 bestOf={tournament.bestOf}
-                semifinalsEditable={view.semifinalsEditable}
-                finalEditable={view.finalEditable}
+                semifinalsEditable={editable && view.semifinalsEditable}
+                finalEditable={editable && view.finalEditable}
                 onSemifinalUpdate={handleSemifinalUpdate}
                 onFinalUpdate={handleFinalUpdate}
               />
@@ -215,6 +222,19 @@ export default function ReadyTournament({
         </div>
       )}
     </section>
+  );
+}
+
+function ReadOnlyWaitingState() {
+  return (
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-8 text-center">
+      <p className="text-sm font-bold uppercase tracking-widest text-zinc-500">
+        Tournament not started
+      </p>
+      <p className="mt-3 text-zinc-400">
+        An administrator must generate the groups before public tournament details appear.
+      </p>
+    </div>
   );
 }
 

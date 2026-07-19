@@ -13,12 +13,14 @@ type TournamentRuntimeProps = {
   tournament: Tournament;
   tournaments: Tournament[];
   players: Player[];
+  editable?: boolean;
 };
 
 export default function TournamentRuntime({
   tournament,
   tournaments,
   players,
+  editable = false,
 }: TournamentRuntimeProps) {
   const [hydrated, setHydrated] = useState(false);
   const [statuses, setStatuses] = useState<Map<number, TournamentStatus>>(new Map());
@@ -116,6 +118,7 @@ export default function TournamentRuntime({
       tournament={{ ...tournament, status }}
       players={players}
       nextTournamentGenerated={nextTournamentGenerated}
+      editable={editable}
     />
   );
 }
