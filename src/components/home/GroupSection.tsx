@@ -1,3 +1,4 @@
+import PlayerLink from "@/components/players/PlayerLink";
 import type { Player, Tournament } from "@/types/competition";
 
 type GroupSectionProps = {
@@ -55,7 +56,7 @@ function GroupPreview({ title, players }: GroupPreviewProps) {
                 style={{ backgroundColor: player.colour }}
               />
 
-              <span className="font-semibold">{player.shortName}</span>
+              <PlayerLink player={player} className="font-semibold hover:text-amber-300 hover:underline">{player.shortName}</PlayerLink>
             </div>
 
             <span className="text-sm text-zinc-600">0 pts</span>

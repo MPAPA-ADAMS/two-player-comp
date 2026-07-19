@@ -19,8 +19,7 @@ export default function TournamentsPage() {
           </h1>
 
           <p className="mt-3 text-zinc-400">
-            The next tournament will unlock after the current tournament is
-            completed.
+            The next tournament will unlock after the current one is completed.
           </p>
         </div>
       </main>
