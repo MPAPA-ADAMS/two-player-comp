@@ -27,11 +27,3 @@ export const MatchStage = {
 } as const
 
 export type MatchStage = (typeof MatchStage)[keyof typeof MatchStage]
-
-
-export const GroupName = {
-  A: 'A',
-  B: 'B'
-} as const
-
-export type GroupName = (typeof GroupName)[keyof typeof GroupName]

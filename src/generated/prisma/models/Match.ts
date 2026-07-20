@@ -48,10 +48,10 @@ export type MatchMinAggregateOutputType = {
   round: number | null
   player1Id: string | null
   player2Id: string | null
+  winnerId: string | null
   player1Rounds: number | null
   player2Rounds: number | null
   completed: boolean | null
-  winnerId: string | null
   playedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -65,10 +65,10 @@ export type MatchMaxAggregateOutputType = {
   round: number | null
   player1Id: string | null
   player2Id: string | null
+  winnerId: string | null
   player1Rounds: number | null
   player2Rounds: number | null
   completed: boolean | null
-  winnerId: string | null
   playedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -82,10 +82,10 @@ export type MatchCountAggregateOutputType = {
   round: number
   player1Id: number
   player2Id: number
+  winnerId: number
   player1Rounds: number
   player2Rounds: number
   completed: number
-  winnerId: number
   playedAt: number
   createdAt: number
   updatedAt: number
@@ -115,10 +115,10 @@ export type MatchMinAggregateInputType = {
   round?: true
   player1Id?: true
   player2Id?: true
+  winnerId?: true
   player1Rounds?: true
   player2Rounds?: true
   completed?: true
-  winnerId?: true
   playedAt?: true
   createdAt?: true
   updatedAt?: true
@@ -132,10 +132,10 @@ export type MatchMaxAggregateInputType = {
   round?: true
   player1Id?: true
   player2Id?: true
+  winnerId?: true
   player1Rounds?: true
   player2Rounds?: true
   completed?: true
-  winnerId?: true
   playedAt?: true
   createdAt?: true
   updatedAt?: true
@@ -149,10 +149,10 @@ export type MatchCountAggregateInputType = {
   round?: true
   player1Id?: true
   player2Id?: true
+  winnerId?: true
   player1Rounds?: true
   player2Rounds?: true
   completed?: true
-  winnerId?: true
   playedAt?: true
   createdAt?: true
   updatedAt?: true
@@ -253,10 +253,10 @@ export type MatchGroupByOutputType = {
   round: number
   player1Id: string
   player2Id: string
+  winnerId: string | null
   player1Rounds: number
   player2Rounds: number
   completed: boolean
-  winnerId: string | null
   playedAt: Date | null
   createdAt: Date
   updatedAt: Date
@@ -293,10 +293,10 @@ export type MatchWhereInput = {
   round?: Prisma.IntFilter<"Match"> | number
   player1Id?: Prisma.StringFilter<"Match"> | string
   player2Id?: Prisma.StringFilter<"Match"> | string
+  winnerId?: Prisma.StringNullableFilter<"Match"> | string | null
   player1Rounds?: Prisma.IntFilter<"Match"> | number
   player2Rounds?: Prisma.IntFilter<"Match"> | number
   completed?: Prisma.BoolFilter<"Match"> | boolean
-  winnerId?: Prisma.StringNullableFilter<"Match"> | string | null
   playedAt?: Prisma.DateTimeNullableFilter<"Match"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Match"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Match"> | Date | string
@@ -315,10 +315,10 @@ export type MatchOrderByWithRelationInput = {
   round?: Prisma.SortOrder
   player1Id?: Prisma.SortOrder
   player2Id?: Prisma.SortOrder
+  winnerId?: Prisma.SortOrderInput | Prisma.SortOrder
   player1Rounds?: Prisma.SortOrder
   player2Rounds?: Prisma.SortOrder
   completed?: Prisma.SortOrder
-  winnerId?: Prisma.SortOrderInput | Prisma.SortOrder
   playedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -340,10 +340,10 @@ export type MatchWhereUniqueInput = Prisma.AtLeast<{
   round?: Prisma.IntFilter<"Match"> | number
   player1Id?: Prisma.StringFilter<"Match"> | string
   player2Id?: Prisma.StringFilter<"Match"> | string
+  winnerId?: Prisma.StringNullableFilter<"Match"> | string | null
   player1Rounds?: Prisma.IntFilter<"Match"> | number
   player2Rounds?: Prisma.IntFilter<"Match"> | number
   completed?: Prisma.BoolFilter<"Match"> | boolean
-  winnerId?: Prisma.StringNullableFilter<"Match"> | string | null
   playedAt?: Prisma.DateTimeNullableFilter<"Match"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Match"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Match"> | Date | string
@@ -362,10 +362,10 @@ export type MatchOrderByWithAggregationInput = {
   round?: Prisma.SortOrder
   player1Id?: Prisma.SortOrder
   player2Id?: Prisma.SortOrder
+  winnerId?: Prisma.SortOrderInput | Prisma.SortOrder
   player1Rounds?: Prisma.SortOrder
   player2Rounds?: Prisma.SortOrder
   completed?: Prisma.SortOrder
-  winnerId?: Prisma.SortOrderInput | Prisma.SortOrder
   playedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -387,10 +387,10 @@ export type MatchScalarWhereWithAggregatesInput = {
   round?: Prisma.IntWithAggregatesFilter<"Match"> | number
   player1Id?: Prisma.StringWithAggregatesFilter<"Match"> | string
   player2Id?: Prisma.StringWithAggregatesFilter<"Match"> | string
+  winnerId?: Prisma.StringNullableWithAggregatesFilter<"Match"> | string | null
   player1Rounds?: Prisma.IntWithAggregatesFilter<"Match"> | number
   player2Rounds?: Prisma.IntWithAggregatesFilter<"Match"> | number
   completed?: Prisma.BoolWithAggregatesFilter<"Match"> | boolean
-  winnerId?: Prisma.StringNullableWithAggregatesFilter<"Match"> | string | null
   playedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Match"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Match"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Match"> | Date | string
@@ -421,10 +421,10 @@ export type MatchUncheckedCreateInput = {
   round: number
   player1Id: string
   player2Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -455,10 +455,10 @@ export type MatchUncheckedUpdateInput = {
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player1Id?: Prisma.StringFieldUpdateOperationsInput | string
   player2Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -472,10 +472,10 @@ export type MatchCreateManyInput = {
   round: number
   player1Id: string
   player2Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -501,10 +501,10 @@ export type MatchUncheckedUpdateManyInput = {
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player1Id?: Prisma.StringFieldUpdateOperationsInput | string
   player2Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -528,10 +528,10 @@ export type MatchCountOrderByAggregateInput = {
   round?: Prisma.SortOrder
   player1Id?: Prisma.SortOrder
   player2Id?: Prisma.SortOrder
+  winnerId?: Prisma.SortOrder
   player1Rounds?: Prisma.SortOrder
   player2Rounds?: Prisma.SortOrder
   completed?: Prisma.SortOrder
-  winnerId?: Prisma.SortOrder
   playedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -552,10 +552,10 @@ export type MatchMaxOrderByAggregateInput = {
   round?: Prisma.SortOrder
   player1Id?: Prisma.SortOrder
   player2Id?: Prisma.SortOrder
+  winnerId?: Prisma.SortOrder
   player1Rounds?: Prisma.SortOrder
   player2Rounds?: Prisma.SortOrder
   completed?: Prisma.SortOrder
-  winnerId?: Prisma.SortOrder
   playedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -569,10 +569,10 @@ export type MatchMinOrderByAggregateInput = {
   round?: Prisma.SortOrder
   player1Id?: Prisma.SortOrder
   player2Id?: Prisma.SortOrder
+  winnerId?: Prisma.SortOrder
   player1Rounds?: Prisma.SortOrder
   player2Rounds?: Prisma.SortOrder
   completed?: Prisma.SortOrder
-  winnerId?: Prisma.SortOrder
   playedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -830,10 +830,10 @@ export type MatchUncheckedCreateWithoutPlayer1Input = {
   stage: $Enums.MatchStage
   round: number
   player2Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -872,10 +872,10 @@ export type MatchUncheckedCreateWithoutPlayer2Input = {
   stage: $Enums.MatchStage
   round: number
   player1Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -960,10 +960,10 @@ export type MatchScalarWhereInput = {
   round?: Prisma.IntFilter<"Match"> | number
   player1Id?: Prisma.StringFilter<"Match"> | string
   player2Id?: Prisma.StringFilter<"Match"> | string
+  winnerId?: Prisma.StringNullableFilter<"Match"> | string | null
   player1Rounds?: Prisma.IntFilter<"Match"> | number
   player2Rounds?: Prisma.IntFilter<"Match"> | number
   completed?: Prisma.BoolFilter<"Match"> | boolean
-  winnerId?: Prisma.StringNullableFilter<"Match"> | string | null
   playedAt?: Prisma.DateTimeNullableFilter<"Match"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Match"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Match"> | Date | string
@@ -1024,10 +1024,10 @@ export type MatchUncheckedCreateWithoutTournamentInput = {
   round: number
   player1Id: string
   player2Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1082,10 +1082,10 @@ export type MatchUncheckedCreateWithoutGroupInput = {
   round: number
   player1Id: string
   player2Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1124,10 +1124,10 @@ export type MatchCreateManyPlayer1Input = {
   stage: $Enums.MatchStage
   round: number
   player2Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1140,10 +1140,10 @@ export type MatchCreateManyPlayer2Input = {
   stage: $Enums.MatchStage
   round: number
   player1Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1188,10 +1188,10 @@ export type MatchUncheckedUpdateWithoutPlayer1Input = {
   stage?: Prisma.EnumMatchStageFieldUpdateOperationsInput | $Enums.MatchStage
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player2Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1204,10 +1204,10 @@ export type MatchUncheckedUpdateManyWithoutPlayer1Input = {
   stage?: Prisma.EnumMatchStageFieldUpdateOperationsInput | $Enums.MatchStage
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player2Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1236,10 +1236,10 @@ export type MatchUncheckedUpdateWithoutPlayer2Input = {
   stage?: Prisma.EnumMatchStageFieldUpdateOperationsInput | $Enums.MatchStage
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player1Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1252,10 +1252,10 @@ export type MatchUncheckedUpdateManyWithoutPlayer2Input = {
   stage?: Prisma.EnumMatchStageFieldUpdateOperationsInput | $Enums.MatchStage
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player1Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1316,10 +1316,10 @@ export type MatchCreateManyTournamentInput = {
   round: number
   player1Id: string
   player2Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1348,10 +1348,10 @@ export type MatchUncheckedUpdateWithoutTournamentInput = {
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player1Id?: Prisma.StringFieldUpdateOperationsInput | string
   player2Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1364,10 +1364,10 @@ export type MatchUncheckedUpdateManyWithoutTournamentInput = {
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player1Id?: Prisma.StringFieldUpdateOperationsInput | string
   player2Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1380,10 +1380,10 @@ export type MatchCreateManyGroupInput = {
   round: number
   player1Id: string
   player2Id: string
+  winnerId?: string | null
   player1Rounds?: number
   player2Rounds?: number
   completed?: boolean
-  winnerId?: string | null
   playedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1412,10 +1412,10 @@ export type MatchUncheckedUpdateWithoutGroupInput = {
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player1Id?: Prisma.StringFieldUpdateOperationsInput | string
   player2Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1428,10 +1428,10 @@ export type MatchUncheckedUpdateManyWithoutGroupInput = {
   round?: Prisma.IntFieldUpdateOperationsInput | number
   player1Id?: Prisma.StringFieldUpdateOperationsInput | string
   player2Id?: Prisma.StringFieldUpdateOperationsInput | string
+  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player1Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   player2Rounds?: Prisma.IntFieldUpdateOperationsInput | number
   completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  winnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1447,10 +1447,10 @@ export type MatchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   round?: boolean
   player1Id?: boolean
   player2Id?: boolean
+  winnerId?: boolean
   player1Rounds?: boolean
   player2Rounds?: boolean
   completed?: boolean
-  winnerId?: boolean
   playedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1469,10 +1469,10 @@ export type MatchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   round?: boolean
   player1Id?: boolean
   player2Id?: boolean
+  winnerId?: boolean
   player1Rounds?: boolean
   player2Rounds?: boolean
   completed?: boolean
-  winnerId?: boolean
   playedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1491,10 +1491,10 @@ export type MatchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   round?: boolean
   player1Id?: boolean
   player2Id?: boolean
+  winnerId?: boolean
   player1Rounds?: boolean
   player2Rounds?: boolean
   completed?: boolean
-  winnerId?: boolean
   playedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1513,16 +1513,16 @@ export type MatchSelectScalar = {
   round?: boolean
   player1Id?: boolean
   player2Id?: boolean
+  winnerId?: boolean
   player1Rounds?: boolean
   player2Rounds?: boolean
   completed?: boolean
-  winnerId?: boolean
   playedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type MatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tournamentId" | "groupId" | "stage" | "round" | "player1Id" | "player2Id" | "player1Rounds" | "player2Rounds" | "completed" | "winnerId" | "playedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
+export type MatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tournamentId" | "groupId" | "stage" | "round" | "player1Id" | "player2Id" | "winnerId" | "player1Rounds" | "player2Rounds" | "completed" | "playedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
 export type MatchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tournament?: boolean | Prisma.TournamentDefaultArgs<ExtArgs>
   group?: boolean | Prisma.Match$groupArgs<ExtArgs>
@@ -1562,10 +1562,10 @@ export type $MatchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     round: number
     player1Id: string
     player2Id: string
+    winnerId: string | null
     player1Rounds: number
     player2Rounds: number
     completed: boolean
-    winnerId: string | null
     playedAt: Date | null
     createdAt: Date
     updatedAt: Date
@@ -2004,10 +2004,10 @@ export interface MatchFieldRefs {
   readonly round: Prisma.FieldRef<"Match", 'Int'>
   readonly player1Id: Prisma.FieldRef<"Match", 'String'>
   readonly player2Id: Prisma.FieldRef<"Match", 'String'>
+  readonly winnerId: Prisma.FieldRef<"Match", 'String'>
   readonly player1Rounds: Prisma.FieldRef<"Match", 'Int'>
   readonly player2Rounds: Prisma.FieldRef<"Match", 'Int'>
   readonly completed: Prisma.FieldRef<"Match", 'Boolean'>
-  readonly winnerId: Prisma.FieldRef<"Match", 'String'>
   readonly playedAt: Prisma.FieldRef<"Match", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Match", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Match", 'DateTime'>

@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Season: 'Season',
+  Game: 'Game',
   Player: 'Player',
   Mentor: 'Mentor',
   Tournament: 'Tournament',
@@ -89,6 +90,17 @@ export const SeasonScalarFieldEnum = {
 } as const
 
 export type SeasonScalarFieldEnum = (typeof SeasonScalarFieldEnum)[keyof typeof SeasonScalarFieldEnum]
+
+
+export const GameScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  seasonId: 'seasonId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GameScalarFieldEnum = (typeof GameScalarFieldEnum)[keyof typeof GameScalarFieldEnum]
 
 
 export const PlayerScalarFieldEnum = {
@@ -132,7 +144,9 @@ export type TournamentScalarFieldEnum = (typeof TournamentScalarFieldEnum)[keyof
 export const TournamentGroupScalarFieldEnum = {
   id: 'id',
   tournamentId: 'tournamentId',
-  name: 'name'
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type TournamentGroupScalarFieldEnum = (typeof TournamentGroupScalarFieldEnum)[keyof typeof TournamentGroupScalarFieldEnum]
@@ -142,7 +156,9 @@ export const GroupEntryScalarFieldEnum = {
   id: 'id',
   groupId: 'groupId',
   playerId: 'playerId',
-  seed: 'seed'
+  seed: 'seed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type GroupEntryScalarFieldEnum = (typeof GroupEntryScalarFieldEnum)[keyof typeof GroupEntryScalarFieldEnum]
@@ -156,10 +172,10 @@ export const MatchScalarFieldEnum = {
   round: 'round',
   player1Id: 'player1Id',
   player2Id: 'player2Id',
+  winnerId: 'winnerId',
   player1Rounds: 'player1Rounds',
   player2Rounds: 'player2Rounds',
   completed: 'completed',
-  winnerId: 'winnerId',
   playedAt: 'playedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -183,7 +199,9 @@ export const MentorDraftTurnScalarFieldEnum = {
   id: 'id',
   draftId: 'draftId',
   pickNumber: 'pickNumber',
-  mentorId: 'mentorId'
+  mentorId: 'mentorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type MentorDraftTurnScalarFieldEnum = (typeof MentorDraftTurnScalarFieldEnum)[keyof typeof MentorDraftTurnScalarFieldEnum]
@@ -194,7 +212,9 @@ export const MentorDraftPickScalarFieldEnum = {
   draftId: 'draftId',
   pickNumber: 'pickNumber',
   mentorId: 'mentorId',
-  playerId: 'playerId'
+  playerId: 'playerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type MentorDraftPickScalarFieldEnum = (typeof MentorDraftPickScalarFieldEnum)[keyof typeof MentorDraftPickScalarFieldEnum]

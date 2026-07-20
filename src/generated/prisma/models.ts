@@ -9,6 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Season'
+export type * from './models/Game'
 export type * from './models/Player'
 export type * from './models/Mentor'
 export type * from './models/Tournament'

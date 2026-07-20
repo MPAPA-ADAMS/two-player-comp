@@ -129,23 +129,6 @@ export type EnumTournamentStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumTournamentStatusFilter<$PrismaModel>
 }
 
-export type EnumGroupNameFilter<$PrismaModel = never> = {
-  equals?: $Enums.GroupName | Prisma.EnumGroupNameFieldRefInput<$PrismaModel>
-  in?: $Enums.GroupName[] | Prisma.ListEnumGroupNameFieldRefInput<$PrismaModel>
-  notIn?: $Enums.GroupName[] | Prisma.ListEnumGroupNameFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumGroupNameFilter<$PrismaModel> | $Enums.GroupName
-}
-
-export type EnumGroupNameWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.GroupName | Prisma.EnumGroupNameFieldRefInput<$PrismaModel>
-  in?: $Enums.GroupName[] | Prisma.ListEnumGroupNameFieldRefInput<$PrismaModel>
-  notIn?: $Enums.GroupName[] | Prisma.ListEnumGroupNameFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumGroupNameWithAggregatesFilter<$PrismaModel> | $Enums.GroupName
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumGroupNameFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumGroupNameFilter<$PrismaModel>
-}
-
 export type StringNullableFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
@@ -348,23 +331,6 @@ export type NestedEnumTournamentStatusWithAggregatesFilter<$PrismaModel = never>
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTournamentStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTournamentStatusFilter<$PrismaModel>
-}
-
-export type NestedEnumGroupNameFilter<$PrismaModel = never> = {
-  equals?: $Enums.GroupName | Prisma.EnumGroupNameFieldRefInput<$PrismaModel>
-  in?: $Enums.GroupName[] | Prisma.ListEnumGroupNameFieldRefInput<$PrismaModel>
-  notIn?: $Enums.GroupName[] | Prisma.ListEnumGroupNameFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumGroupNameFilter<$PrismaModel> | $Enums.GroupName
-}
-
-export type NestedEnumGroupNameWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.GroupName | Prisma.EnumGroupNameFieldRefInput<$PrismaModel>
-  in?: $Enums.GroupName[] | Prisma.ListEnumGroupNameFieldRefInput<$PrismaModel>
-  notIn?: $Enums.GroupName[] | Prisma.ListEnumGroupNameFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumGroupNameWithAggregatesFilter<$PrismaModel> | $Enums.GroupName
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumGroupNameFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumGroupNameFilter<$PrismaModel>
 }
 
 export type NestedStringNullableFilter<$PrismaModel = never> = {

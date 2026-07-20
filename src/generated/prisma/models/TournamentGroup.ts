@@ -37,19 +37,25 @@ export type TournamentGroupSumAggregateOutputType = {
 export type TournamentGroupMinAggregateOutputType = {
   id: string | null
   tournamentId: number | null
-  name: $Enums.GroupName | null
+  name: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type TournamentGroupMaxAggregateOutputType = {
   id: string | null
   tournamentId: number | null
-  name: $Enums.GroupName | null
+  name: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type TournamentGroupCountAggregateOutputType = {
   id: number
   tournamentId: number
   name: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -66,18 +72,24 @@ export type TournamentGroupMinAggregateInputType = {
   id?: true
   tournamentId?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type TournamentGroupMaxAggregateInputType = {
   id?: true
   tournamentId?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type TournamentGroupCountAggregateInputType = {
   id?: true
   tournamentId?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -170,7 +182,9 @@ export type TournamentGroupGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 export type TournamentGroupGroupByOutputType = {
   id: string
   tournamentId: number
-  name: $Enums.GroupName
+  name: string
+  createdAt: Date
+  updatedAt: Date
   _count: TournamentGroupCountAggregateOutputType | null
   _avg: TournamentGroupAvgAggregateOutputType | null
   _sum: TournamentGroupSumAggregateOutputType | null
@@ -199,7 +213,9 @@ export type TournamentGroupWhereInput = {
   NOT?: Prisma.TournamentGroupWhereInput | Prisma.TournamentGroupWhereInput[]
   id?: Prisma.StringFilter<"TournamentGroup"> | string
   tournamentId?: Prisma.IntFilter<"TournamentGroup"> | number
-  name?: Prisma.EnumGroupNameFilter<"TournamentGroup"> | $Enums.GroupName
+  name?: Prisma.StringFilter<"TournamentGroup"> | string
+  createdAt?: Prisma.DateTimeFilter<"TournamentGroup"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TournamentGroup"> | Date | string
   tournament?: Prisma.XOR<Prisma.TournamentScalarRelationFilter, Prisma.TournamentWhereInput>
   entries?: Prisma.GroupEntryListRelationFilter
   matches?: Prisma.MatchListRelationFilter
@@ -209,6 +225,8 @@ export type TournamentGroupOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   tournamentId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   tournament?: Prisma.TournamentOrderByWithRelationInput
   entries?: Prisma.GroupEntryOrderByRelationAggregateInput
   matches?: Prisma.MatchOrderByRelationAggregateInput
@@ -221,7 +239,9 @@ export type TournamentGroupWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.TournamentGroupWhereInput[]
   NOT?: Prisma.TournamentGroupWhereInput | Prisma.TournamentGroupWhereInput[]
   tournamentId?: Prisma.IntFilter<"TournamentGroup"> | number
-  name?: Prisma.EnumGroupNameFilter<"TournamentGroup"> | $Enums.GroupName
+  name?: Prisma.StringFilter<"TournamentGroup"> | string
+  createdAt?: Prisma.DateTimeFilter<"TournamentGroup"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TournamentGroup"> | Date | string
   tournament?: Prisma.XOR<Prisma.TournamentScalarRelationFilter, Prisma.TournamentWhereInput>
   entries?: Prisma.GroupEntryListRelationFilter
   matches?: Prisma.MatchListRelationFilter
@@ -231,6 +251,8 @@ export type TournamentGroupOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   tournamentId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.TournamentGroupCountOrderByAggregateInput
   _avg?: Prisma.TournamentGroupAvgOrderByAggregateInput
   _max?: Prisma.TournamentGroupMaxOrderByAggregateInput
@@ -244,12 +266,16 @@ export type TournamentGroupScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TournamentGroupScalarWhereWithAggregatesInput | Prisma.TournamentGroupScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"TournamentGroup"> | string
   tournamentId?: Prisma.IntWithAggregatesFilter<"TournamentGroup"> | number
-  name?: Prisma.EnumGroupNameWithAggregatesFilter<"TournamentGroup"> | $Enums.GroupName
+  name?: Prisma.StringWithAggregatesFilter<"TournamentGroup"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"TournamentGroup"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TournamentGroup"> | Date | string
 }
 
 export type TournamentGroupCreateInput = {
   id: string
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   tournament: Prisma.TournamentCreateNestedOneWithoutGroupsInput
   entries?: Prisma.GroupEntryCreateNestedManyWithoutGroupInput
   matches?: Prisma.MatchCreateNestedManyWithoutGroupInput
@@ -258,14 +284,18 @@ export type TournamentGroupCreateInput = {
 export type TournamentGroupUncheckedCreateInput = {
   id: string
   tournamentId: number
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   entries?: Prisma.GroupEntryUncheckedCreateNestedManyWithoutGroupInput
   matches?: Prisma.MatchUncheckedCreateNestedManyWithoutGroupInput
 }
 
 export type TournamentGroupUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tournament?: Prisma.TournamentUpdateOneRequiredWithoutGroupsNestedInput
   entries?: Prisma.GroupEntryUpdateManyWithoutGroupNestedInput
   matches?: Prisma.MatchUpdateManyWithoutGroupNestedInput
@@ -274,7 +304,9 @@ export type TournamentGroupUpdateInput = {
 export type TournamentGroupUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tournamentId?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.GroupEntryUncheckedUpdateManyWithoutGroupNestedInput
   matches?: Prisma.MatchUncheckedUpdateManyWithoutGroupNestedInput
 }
@@ -282,18 +314,24 @@ export type TournamentGroupUncheckedUpdateInput = {
 export type TournamentGroupCreateManyInput = {
   id: string
   tournamentId: number
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TournamentGroupUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TournamentGroupUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tournamentId?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TournamentGroupListRelationFilter = {
@@ -308,13 +346,15 @@ export type TournamentGroupOrderByRelationAggregateInput = {
 
 export type TournamentGroupTournamentIdNameCompoundUniqueInput = {
   tournamentId: number
-  name: $Enums.GroupName
+  name: string
 }
 
 export type TournamentGroupCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tournamentId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TournamentGroupAvgOrderByAggregateInput = {
@@ -325,12 +365,16 @@ export type TournamentGroupMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tournamentId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TournamentGroupMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tournamentId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TournamentGroupSumOrderByAggregateInput = {
@@ -389,10 +433,6 @@ export type TournamentGroupUncheckedUpdateManyWithoutTournamentNestedInput = {
   deleteMany?: Prisma.TournamentGroupScalarWhereInput | Prisma.TournamentGroupScalarWhereInput[]
 }
 
-export type EnumGroupNameFieldUpdateOperationsInput = {
-  set?: $Enums.GroupName
-}
-
 export type TournamentGroupCreateNestedOneWithoutEntriesInput = {
   create?: Prisma.XOR<Prisma.TournamentGroupCreateWithoutEntriesInput, Prisma.TournamentGroupUncheckedCreateWithoutEntriesInput>
   connectOrCreate?: Prisma.TournamentGroupCreateOrConnectWithoutEntriesInput
@@ -425,14 +465,18 @@ export type TournamentGroupUpdateOneWithoutMatchesNestedInput = {
 
 export type TournamentGroupCreateWithoutTournamentInput = {
   id: string
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   entries?: Prisma.GroupEntryCreateNestedManyWithoutGroupInput
   matches?: Prisma.MatchCreateNestedManyWithoutGroupInput
 }
 
 export type TournamentGroupUncheckedCreateWithoutTournamentInput = {
   id: string
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   entries?: Prisma.GroupEntryUncheckedCreateNestedManyWithoutGroupInput
   matches?: Prisma.MatchUncheckedCreateNestedManyWithoutGroupInput
 }
@@ -469,12 +513,16 @@ export type TournamentGroupScalarWhereInput = {
   NOT?: Prisma.TournamentGroupScalarWhereInput | Prisma.TournamentGroupScalarWhereInput[]
   id?: Prisma.StringFilter<"TournamentGroup"> | string
   tournamentId?: Prisma.IntFilter<"TournamentGroup"> | number
-  name?: Prisma.EnumGroupNameFilter<"TournamentGroup"> | $Enums.GroupName
+  name?: Prisma.StringFilter<"TournamentGroup"> | string
+  createdAt?: Prisma.DateTimeFilter<"TournamentGroup"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TournamentGroup"> | Date | string
 }
 
 export type TournamentGroupCreateWithoutEntriesInput = {
   id: string
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   tournament: Prisma.TournamentCreateNestedOneWithoutGroupsInput
   matches?: Prisma.MatchCreateNestedManyWithoutGroupInput
 }
@@ -482,7 +530,9 @@ export type TournamentGroupCreateWithoutEntriesInput = {
 export type TournamentGroupUncheckedCreateWithoutEntriesInput = {
   id: string
   tournamentId: number
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   matches?: Prisma.MatchUncheckedCreateNestedManyWithoutGroupInput
 }
 
@@ -504,7 +554,9 @@ export type TournamentGroupUpdateToOneWithWhereWithoutEntriesInput = {
 
 export type TournamentGroupUpdateWithoutEntriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tournament?: Prisma.TournamentUpdateOneRequiredWithoutGroupsNestedInput
   matches?: Prisma.MatchUpdateManyWithoutGroupNestedInput
 }
@@ -512,13 +564,17 @@ export type TournamentGroupUpdateWithoutEntriesInput = {
 export type TournamentGroupUncheckedUpdateWithoutEntriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tournamentId?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   matches?: Prisma.MatchUncheckedUpdateManyWithoutGroupNestedInput
 }
 
 export type TournamentGroupCreateWithoutMatchesInput = {
   id: string
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   tournament: Prisma.TournamentCreateNestedOneWithoutGroupsInput
   entries?: Prisma.GroupEntryCreateNestedManyWithoutGroupInput
 }
@@ -526,7 +582,9 @@ export type TournamentGroupCreateWithoutMatchesInput = {
 export type TournamentGroupUncheckedCreateWithoutMatchesInput = {
   id: string
   tournamentId: number
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   entries?: Prisma.GroupEntryUncheckedCreateNestedManyWithoutGroupInput
 }
 
@@ -548,7 +606,9 @@ export type TournamentGroupUpdateToOneWithWhereWithoutMatchesInput = {
 
 export type TournamentGroupUpdateWithoutMatchesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tournament?: Prisma.TournamentUpdateOneRequiredWithoutGroupsNestedInput
   entries?: Prisma.GroupEntryUpdateManyWithoutGroupNestedInput
 }
@@ -556,32 +616,42 @@ export type TournamentGroupUpdateWithoutMatchesInput = {
 export type TournamentGroupUncheckedUpdateWithoutMatchesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tournamentId?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.GroupEntryUncheckedUpdateManyWithoutGroupNestedInput
 }
 
 export type TournamentGroupCreateManyTournamentInput = {
   id: string
-  name: $Enums.GroupName
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TournamentGroupUpdateWithoutTournamentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.GroupEntryUpdateManyWithoutGroupNestedInput
   matches?: Prisma.MatchUpdateManyWithoutGroupNestedInput
 }
 
 export type TournamentGroupUncheckedUpdateWithoutTournamentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.GroupEntryUncheckedUpdateManyWithoutGroupNestedInput
   matches?: Prisma.MatchUncheckedUpdateManyWithoutGroupNestedInput
 }
 
 export type TournamentGroupUncheckedUpdateManyWithoutTournamentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.EnumGroupNameFieldUpdateOperationsInput | $Enums.GroupName
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -628,6 +698,8 @@ export type TournamentGroupSelect<ExtArgs extends runtime.Types.Extensions.Inter
   id?: boolean
   tournamentId?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   tournament?: boolean | Prisma.TournamentDefaultArgs<ExtArgs>
   entries?: boolean | Prisma.TournamentGroup$entriesArgs<ExtArgs>
   matches?: boolean | Prisma.TournamentGroup$matchesArgs<ExtArgs>
@@ -638,6 +710,8 @@ export type TournamentGroupSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   id?: boolean
   tournamentId?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   tournament?: boolean | Prisma.TournamentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tournamentGroup"]>
 
@@ -645,6 +719,8 @@ export type TournamentGroupSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   id?: boolean
   tournamentId?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   tournament?: boolean | Prisma.TournamentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tournamentGroup"]>
 
@@ -652,9 +728,11 @@ export type TournamentGroupSelectScalar = {
   id?: boolean
   tournamentId?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type TournamentGroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tournamentId" | "name", ExtArgs["result"]["tournamentGroup"]>
+export type TournamentGroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tournamentId" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["tournamentGroup"]>
 export type TournamentGroupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tournament?: boolean | Prisma.TournamentDefaultArgs<ExtArgs>
   entries?: boolean | Prisma.TournamentGroup$entriesArgs<ExtArgs>
@@ -678,7 +756,9 @@ export type $TournamentGroupPayload<ExtArgs extends runtime.Types.Extensions.Int
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     tournamentId: number
-    name: $Enums.GroupName
+    name: string
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["tournamentGroup"]>
   composites: {}
 }
@@ -1107,7 +1187,9 @@ export interface Prisma__TournamentGroupClient<T, Null = never, ExtArgs extends 
 export interface TournamentGroupFieldRefs {
   readonly id: Prisma.FieldRef<"TournamentGroup", 'String'>
   readonly tournamentId: Prisma.FieldRef<"TournamentGroup", 'Int'>
-  readonly name: Prisma.FieldRef<"TournamentGroup", 'GroupName'>
+  readonly name: Prisma.FieldRef<"TournamentGroup", 'String'>
+  readonly createdAt: Prisma.FieldRef<"TournamentGroup", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"TournamentGroup", 'DateTime'>
 }
     
 

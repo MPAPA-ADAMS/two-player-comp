@@ -39,6 +39,8 @@ export type MentorDraftTurnMinAggregateOutputType = {
   draftId: string | null
   pickNumber: number | null
   mentorId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type MentorDraftTurnMaxAggregateOutputType = {
@@ -46,6 +48,8 @@ export type MentorDraftTurnMaxAggregateOutputType = {
   draftId: string | null
   pickNumber: number | null
   mentorId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type MentorDraftTurnCountAggregateOutputType = {
@@ -53,6 +57,8 @@ export type MentorDraftTurnCountAggregateOutputType = {
   draftId: number
   pickNumber: number
   mentorId: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -70,6 +76,8 @@ export type MentorDraftTurnMinAggregateInputType = {
   draftId?: true
   pickNumber?: true
   mentorId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type MentorDraftTurnMaxAggregateInputType = {
@@ -77,6 +85,8 @@ export type MentorDraftTurnMaxAggregateInputType = {
   draftId?: true
   pickNumber?: true
   mentorId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type MentorDraftTurnCountAggregateInputType = {
@@ -84,6 +94,8 @@ export type MentorDraftTurnCountAggregateInputType = {
   draftId?: true
   pickNumber?: true
   mentorId?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -178,6 +190,8 @@ export type MentorDraftTurnGroupByOutputType = {
   draftId: string
   pickNumber: number
   mentorId: string
+  createdAt: Date
+  updatedAt: Date
   _count: MentorDraftTurnCountAggregateOutputType | null
   _avg: MentorDraftTurnAvgAggregateOutputType | null
   _sum: MentorDraftTurnSumAggregateOutputType | null
@@ -208,6 +222,8 @@ export type MentorDraftTurnWhereInput = {
   draftId?: Prisma.StringFilter<"MentorDraftTurn"> | string
   pickNumber?: Prisma.IntFilter<"MentorDraftTurn"> | number
   mentorId?: Prisma.StringFilter<"MentorDraftTurn"> | string
+  createdAt?: Prisma.DateTimeFilter<"MentorDraftTurn"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"MentorDraftTurn"> | Date | string
   draft?: Prisma.XOR<Prisma.MentorDraftScalarRelationFilter, Prisma.MentorDraftWhereInput>
   mentor?: Prisma.XOR<Prisma.MentorScalarRelationFilter, Prisma.MentorWhereInput>
 }
@@ -217,6 +233,8 @@ export type MentorDraftTurnOrderByWithRelationInput = {
   draftId?: Prisma.SortOrder
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   draft?: Prisma.MentorDraftOrderByWithRelationInput
   mentor?: Prisma.MentorOrderByWithRelationInput
 }
@@ -230,6 +248,8 @@ export type MentorDraftTurnWhereUniqueInput = Prisma.AtLeast<{
   draftId?: Prisma.StringFilter<"MentorDraftTurn"> | string
   pickNumber?: Prisma.IntFilter<"MentorDraftTurn"> | number
   mentorId?: Prisma.StringFilter<"MentorDraftTurn"> | string
+  createdAt?: Prisma.DateTimeFilter<"MentorDraftTurn"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"MentorDraftTurn"> | Date | string
   draft?: Prisma.XOR<Prisma.MentorDraftScalarRelationFilter, Prisma.MentorDraftWhereInput>
   mentor?: Prisma.XOR<Prisma.MentorScalarRelationFilter, Prisma.MentorWhereInput>
 }, "id" | "draftId_pickNumber">
@@ -239,6 +259,8 @@ export type MentorDraftTurnOrderByWithAggregationInput = {
   draftId?: Prisma.SortOrder
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.MentorDraftTurnCountOrderByAggregateInput
   _avg?: Prisma.MentorDraftTurnAvgOrderByAggregateInput
   _max?: Prisma.MentorDraftTurnMaxOrderByAggregateInput
@@ -254,11 +276,15 @@ export type MentorDraftTurnScalarWhereWithAggregatesInput = {
   draftId?: Prisma.StringWithAggregatesFilter<"MentorDraftTurn"> | string
   pickNumber?: Prisma.IntWithAggregatesFilter<"MentorDraftTurn"> | number
   mentorId?: Prisma.StringWithAggregatesFilter<"MentorDraftTurn"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"MentorDraftTurn"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MentorDraftTurn"> | Date | string
 }
 
 export type MentorDraftTurnCreateInput = {
   id: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   draft: Prisma.MentorDraftCreateNestedOneWithoutTurnsInput
   mentor: Prisma.MentorCreateNestedOneWithoutDraftTurnsInput
 }
@@ -268,11 +294,15 @@ export type MentorDraftTurnUncheckedCreateInput = {
   draftId: string
   pickNumber: number
   mentorId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftTurnUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   draft?: Prisma.MentorDraftUpdateOneRequiredWithoutTurnsNestedInput
   mentor?: Prisma.MentorUpdateOneRequiredWithoutDraftTurnsNestedInput
 }
@@ -282,6 +312,8 @@ export type MentorDraftTurnUncheckedUpdateInput = {
   draftId?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftTurnCreateManyInput = {
@@ -289,11 +321,15 @@ export type MentorDraftTurnCreateManyInput = {
   draftId: string
   pickNumber: number
   mentorId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftTurnUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftTurnUncheckedUpdateManyInput = {
@@ -301,6 +337,8 @@ export type MentorDraftTurnUncheckedUpdateManyInput = {
   draftId?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftTurnListRelationFilter = {
@@ -323,6 +361,8 @@ export type MentorDraftTurnCountOrderByAggregateInput = {
   draftId?: Prisma.SortOrder
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type MentorDraftTurnAvgOrderByAggregateInput = {
@@ -334,6 +374,8 @@ export type MentorDraftTurnMaxOrderByAggregateInput = {
   draftId?: Prisma.SortOrder
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type MentorDraftTurnMinOrderByAggregateInput = {
@@ -341,6 +383,8 @@ export type MentorDraftTurnMinOrderByAggregateInput = {
   draftId?: Prisma.SortOrder
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type MentorDraftTurnSumOrderByAggregateInput = {
@@ -434,6 +478,8 @@ export type MentorDraftTurnUncheckedUpdateManyWithoutDraftNestedInput = {
 export type MentorDraftTurnCreateWithoutMentorInput = {
   id: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   draft: Prisma.MentorDraftCreateNestedOneWithoutTurnsInput
 }
 
@@ -441,6 +487,8 @@ export type MentorDraftTurnUncheckedCreateWithoutMentorInput = {
   id: string
   draftId: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftTurnCreateOrConnectWithoutMentorInput = {
@@ -477,11 +525,15 @@ export type MentorDraftTurnScalarWhereInput = {
   draftId?: Prisma.StringFilter<"MentorDraftTurn"> | string
   pickNumber?: Prisma.IntFilter<"MentorDraftTurn"> | number
   mentorId?: Prisma.StringFilter<"MentorDraftTurn"> | string
+  createdAt?: Prisma.DateTimeFilter<"MentorDraftTurn"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"MentorDraftTurn"> | Date | string
 }
 
 export type MentorDraftTurnCreateWithoutDraftInput = {
   id: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   mentor: Prisma.MentorCreateNestedOneWithoutDraftTurnsInput
 }
 
@@ -489,6 +541,8 @@ export type MentorDraftTurnUncheckedCreateWithoutDraftInput = {
   id: string
   pickNumber: number
   mentorId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftTurnCreateOrConnectWithoutDraftInput = {
@@ -521,11 +575,15 @@ export type MentorDraftTurnCreateManyMentorInput = {
   id: string
   draftId: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftTurnUpdateWithoutMentorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   draft?: Prisma.MentorDraftUpdateOneRequiredWithoutTurnsNestedInput
 }
 
@@ -533,23 +591,31 @@ export type MentorDraftTurnUncheckedUpdateWithoutMentorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   draftId?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftTurnUncheckedUpdateManyWithoutMentorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   draftId?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftTurnCreateManyDraftInput = {
   id: string
   pickNumber: number
   mentorId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftTurnUpdateWithoutDraftInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mentor?: Prisma.MentorUpdateOneRequiredWithoutDraftTurnsNestedInput
 }
 
@@ -557,12 +623,16 @@ export type MentorDraftTurnUncheckedUpdateWithoutDraftInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftTurnUncheckedUpdateManyWithoutDraftInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -572,6 +642,8 @@ export type MentorDraftTurnSelect<ExtArgs extends runtime.Types.Extensions.Inter
   draftId?: boolean
   pickNumber?: boolean
   mentorId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   draft?: boolean | Prisma.MentorDraftDefaultArgs<ExtArgs>
   mentor?: boolean | Prisma.MentorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mentorDraftTurn"]>
@@ -581,6 +653,8 @@ export type MentorDraftTurnSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   draftId?: boolean
   pickNumber?: boolean
   mentorId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   draft?: boolean | Prisma.MentorDraftDefaultArgs<ExtArgs>
   mentor?: boolean | Prisma.MentorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mentorDraftTurn"]>
@@ -590,6 +664,8 @@ export type MentorDraftTurnSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   draftId?: boolean
   pickNumber?: boolean
   mentorId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   draft?: boolean | Prisma.MentorDraftDefaultArgs<ExtArgs>
   mentor?: boolean | Prisma.MentorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mentorDraftTurn"]>
@@ -599,9 +675,11 @@ export type MentorDraftTurnSelectScalar = {
   draftId?: boolean
   pickNumber?: boolean
   mentorId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type MentorDraftTurnOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "draftId" | "pickNumber" | "mentorId", ExtArgs["result"]["mentorDraftTurn"]>
+export type MentorDraftTurnOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "draftId" | "pickNumber" | "mentorId" | "createdAt" | "updatedAt", ExtArgs["result"]["mentorDraftTurn"]>
 export type MentorDraftTurnInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   draft?: boolean | Prisma.MentorDraftDefaultArgs<ExtArgs>
   mentor?: boolean | Prisma.MentorDefaultArgs<ExtArgs>
@@ -626,6 +704,8 @@ export type $MentorDraftTurnPayload<ExtArgs extends runtime.Types.Extensions.Int
     draftId: string
     pickNumber: number
     mentorId: string
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["mentorDraftTurn"]>
   composites: {}
 }
@@ -1055,6 +1135,8 @@ export interface MentorDraftTurnFieldRefs {
   readonly draftId: Prisma.FieldRef<"MentorDraftTurn", 'String'>
   readonly pickNumber: Prisma.FieldRef<"MentorDraftTurn", 'Int'>
   readonly mentorId: Prisma.FieldRef<"MentorDraftTurn", 'String'>
+  readonly createdAt: Prisma.FieldRef<"MentorDraftTurn", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"MentorDraftTurn", 'DateTime'>
 }
     
 

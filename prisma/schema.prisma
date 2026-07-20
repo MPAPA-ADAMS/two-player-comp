@@ -1,0 +1,211 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TournamentStatus {
+  LOCKED
+  READY
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum MatchStage {
+  GROUP
+  SEMIFINAL
+  FINAL
+  TIEBREAK
+}
+
+model Season {
+  id       Int     @id @default(autoincrement())
+  name     String
+  number   Int     @unique
+  isActive Boolean @default(false)
+
+  games       Game[]
+  tournaments Tournament[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Game {
+  id       Int    @id @default(autoincrement())
+  name     String
+  seasonId Int
+
+  season Season @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([seasonId, name])
+  @@index([seasonId])
+}
+
+model Player {
+  id        String  @id @default(cuid())
+  name      String
+  shortName String
+  colour    String
+  active    Boolean @default(true)
+
+  groupEntries     GroupEntry[]
+  matchesAsPlayer1 Match[]           @relation("MatchPlayer1")
+  matchesAsPlayer2 Match[]           @relation("MatchPlayer2")
+  matchesWon       Match[]           @relation("MatchWinner")
+  mentorDraftPicks MentorDraftPick[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Mentor {
+  id     String  @id @default(cuid())
+  name   String
+  active Boolean @default(true)
+
+  draftTurns MentorDraftTurn[]
+  draftPicks MentorDraftPick[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Tournament {
+  id       Int              @id @default(autoincrement())
+  seasonId Int
+  name     String
+  game     String
+  bestOf   Int              @default(3)
+  status   TournamentStatus @default(READY)
+
+  season      Season            @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  groups      TournamentGroup[]
+  matches     Match[]
+  mentorDraft MentorDraft?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([seasonId])
+}
+
+model TournamentGroup {
+  id           String @id
+  tournamentId Int
+  name         String
+
+  tournament Tournament   @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  entries    GroupEntry[]
+  matches    Match[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([tournamentId, name])
+  @@index([tournamentId])
+}
+
+model GroupEntry {
+  id       String @id
+  groupId  String
+  playerId String
+  seed     Int
+
+  group  TournamentGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  player Player          @relation(fields: [playerId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([groupId, playerId])
+  @@unique([groupId, seed])
+  @@index([playerId])
+}
+
+model Match {
+  id           String     @id
+  tournamentId Int
+  groupId      String?
+  stage        MatchStage
+  round        Int
+
+  player1Id String
+  player2Id String
+  winnerId  String?
+
+  player1Rounds Int       @default(0)
+  player2Rounds Int       @default(0)
+  completed     Boolean   @default(false)
+  playedAt      DateTime?
+
+  tournament Tournament       @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  group      TournamentGroup? @relation(fields: [groupId], references: [id], onDelete: SetNull)
+  player1    Player           @relation("MatchPlayer1", fields: [player1Id], references: [id], onDelete: Restrict)
+  player2    Player           @relation("MatchPlayer2", fields: [player2Id], references: [id], onDelete: Restrict)
+  winner     Player?          @relation("MatchWinner", fields: [winnerId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([tournamentId])
+  @@index([groupId])
+  @@index([player1Id])
+  @@index([player2Id])
+  @@index([winnerId])
+}
+
+model MentorDraft {
+  id           String  @id
+  tournamentId Int     @unique
+  completed    Boolean @default(false)
+
+  tournament Tournament        @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  turns      MentorDraftTurn[]
+  picks      MentorDraftPick[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model MentorDraftTurn {
+  id         String @id
+  draftId    String
+  pickNumber Int
+  mentorId   String
+
+  draft  MentorDraft @relation(fields: [draftId], references: [id], onDelete: Cascade)
+  mentor Mentor      @relation(fields: [mentorId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([draftId, pickNumber])
+  @@index([mentorId])
+}
+
+model MentorDraftPick {
+  id         String @id
+  draftId    String
+  pickNumber Int
+  mentorId   String
+  playerId   String
+
+  draft  MentorDraft @relation(fields: [draftId], references: [id], onDelete: Cascade)
+  mentor Mentor      @relation(fields: [mentorId], references: [id], onDelete: Restrict)
+  player Player      @relation(fields: [playerId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([draftId, pickNumber])
+  @@unique([draftId, playerId])
+  @@index([mentorId])
+  @@index([playerId])
+}

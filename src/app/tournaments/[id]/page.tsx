@@ -1,34 +1,29 @@
 import { notFound } from "next/navigation";
-import CompletedTournament from "@/components/tournament/CompletedTournament";
+
 import TournamentRuntime from "@/components/tournament/runtime/TournamentRuntime";
-import { getTournamentHistory, players, tournaments } from "@/lib/mockData";
+import { loadTournamentPageData } from "@/lib/competition/database/loadTournamentPages";
+
+export const dynamic = "force-dynamic";
 
 type TournamentPageProps = {
-  params: Promise<{ id: string }>;
+  params: Promise<{
+    id: string;
+  }>;
 };
 
 export default async function TournamentPage({ params }: TournamentPageProps) {
   const { id } = await params;
   const tournamentId = Number(id);
 
-  if (!Number.isInteger(tournamentId)) {
+  if (!Number.isInteger(tournamentId) || tournamentId < 1) {
     notFound();
   }
 
-  const tournament = tournaments.find((item) => item.id === tournamentId);
+  const { tournament, tournaments, players } =
+    await loadTournamentPageData(tournamentId);
 
   if (!tournament) {
     notFound();
-  }
-
-  const history = getTournamentHistory(tournament.id);
-
-  if (tournament.status === "COMPLETED" && history) {
-    return (
-      <main className="mx-auto max-w-7xl px-6 py-10">
-        <CompletedTournament history={history} />
-      </main>
-    );
   }
 
   return (

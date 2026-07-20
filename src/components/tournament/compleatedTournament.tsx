@@ -1,23 +1,26 @@
 "use client";
 
 import { useMemo, useState } from "react";
+
 import TournamentNavigation from "@/components/tournament/TournamentNavigation";
+import { getMatchLoser, getMatchWinner } from "@/lib/competition/bracket";
 import {
   calculateStandings,
   type StandingRow,
 } from "@/lib/competition/standings";
-import { getMatchLoser, getMatchWinner } from "@/lib/competition/bracket";
-import type { Match, Player } from "@/types/competition";
+import type { Match, Player, Tournament } from "@/types/competition";
 import type { TournamentHistory } from "@/types/tournament-history";
 
 type HistoryTab = "A" | "B" | "BRACKET";
 
 type CompletedTournamentProps = {
   history: TournamentHistory;
+  tournaments: Tournament[];
 };
 
 export default function CompletedTournament({
   history,
+  tournaments,
 }: CompletedTournamentProps) {
   const [activeTab, setActiveTab] = useState<HistoryTab>("BRACKET");
 
@@ -49,7 +52,10 @@ export default function CompletedTournament({
 
   return (
     <section>
-      <TournamentNavigation currentTournamentId={history.tournament.id} />
+      <TournamentNavigation
+        currentTournamentId={history.tournament.id}
+        tournaments={tournaments}
+      />
 
       <header className="mb-8">
         <div className="flex flex-wrap items-start justify-between gap-6">

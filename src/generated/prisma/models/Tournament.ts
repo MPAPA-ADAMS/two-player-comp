@@ -318,10 +318,9 @@ export type TournamentScalarWhereWithAggregatesInput = {
 }
 
 export type TournamentCreateInput = {
-  id: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -332,11 +331,11 @@ export type TournamentCreateInput = {
 }
 
 export type TournamentUncheckedCreateInput = {
-  id: number
+  id?: number
   seasonId: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -346,7 +345,6 @@ export type TournamentUncheckedCreateInput = {
 }
 
 export type TournamentUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
@@ -374,18 +372,17 @@ export type TournamentUncheckedUpdateInput = {
 }
 
 export type TournamentCreateManyInput = {
-  id: number
+  id?: number
   seasonId: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type TournamentUpdateManyMutationInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
@@ -554,10 +551,9 @@ export type TournamentUpdateOneRequiredWithoutMentorDraftNestedInput = {
 }
 
 export type TournamentCreateWithoutSeasonInput = {
-  id: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -567,10 +563,10 @@ export type TournamentCreateWithoutSeasonInput = {
 }
 
 export type TournamentUncheckedCreateWithoutSeasonInput = {
-  id: number
+  id?: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -620,10 +616,9 @@ export type TournamentScalarWhereInput = {
 }
 
 export type TournamentCreateWithoutGroupsInput = {
-  id: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -633,11 +628,11 @@ export type TournamentCreateWithoutGroupsInput = {
 }
 
 export type TournamentUncheckedCreateWithoutGroupsInput = {
-  id: number
+  id?: number
   seasonId: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -662,7 +657,6 @@ export type TournamentUpdateToOneWithWhereWithoutGroupsInput = {
 }
 
 export type TournamentUpdateWithoutGroupsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
@@ -688,10 +682,9 @@ export type TournamentUncheckedUpdateWithoutGroupsInput = {
 }
 
 export type TournamentCreateWithoutMatchesInput = {
-  id: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -701,11 +694,11 @@ export type TournamentCreateWithoutMatchesInput = {
 }
 
 export type TournamentUncheckedCreateWithoutMatchesInput = {
-  id: number
+  id?: number
   seasonId: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -730,7 +723,6 @@ export type TournamentUpdateToOneWithWhereWithoutMatchesInput = {
 }
 
 export type TournamentUpdateWithoutMatchesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
@@ -756,10 +748,9 @@ export type TournamentUncheckedUpdateWithoutMatchesInput = {
 }
 
 export type TournamentCreateWithoutMentorDraftInput = {
-  id: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -769,11 +760,11 @@ export type TournamentCreateWithoutMentorDraftInput = {
 }
 
 export type TournamentUncheckedCreateWithoutMentorDraftInput = {
-  id: number
+  id?: number
   seasonId: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -798,7 +789,6 @@ export type TournamentUpdateToOneWithWhereWithoutMentorDraftInput = {
 }
 
 export type TournamentUpdateWithoutMentorDraftInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
@@ -824,17 +814,16 @@ export type TournamentUncheckedUpdateWithoutMentorDraftInput = {
 }
 
 export type TournamentCreateManySeasonInput = {
-  id: number
+  id?: number
   name: string
   game: string
-  bestOf: number
+  bestOf?: number
   status?: $Enums.TournamentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type TournamentUpdateWithoutSeasonInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number

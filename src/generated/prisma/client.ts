@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type Season = Prisma.SeasonModel
 /**
+ * Model Game
+ * 
+ */
+export type Game = Prisma.GameModel
+/**
  * Model Player
  * 
  */

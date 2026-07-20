@@ -1,35 +1,33 @@
-import ReadyTournament from "@/components/tournament/ReadyTournament";
-import { players, tournaments } from "@/lib/mockData";
+import { redirect } from "next/navigation";
 
-export default function TournamentsPage() {
-  const readyTournament = tournaments.find(
-    (tournament) => tournament.status === "READY",
-  );
+import { loadActiveSeasonTournaments } from "@/lib/competition/database/loadTournamentPages";
 
-  if (!readyTournament) {
-    return (
-      <main className="mx-auto max-w-7xl px-6 py-10">
-        <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-8">
-          <p className="text-sm font-semibold uppercase tracking-widest text-zinc-500">
-            Tournament status
-          </p>
+export const dynamic = "force-dynamic";
 
-          <h1 className="mt-3 text-3xl font-black">
-            No tournament is ready for a draw
-          </h1>
+export default async function TournamentsPage() {
+  const tournaments = await loadActiveSeasonTournaments();
 
-          <p className="mt-3 text-zinc-400">
-            The next tournament will unlock after the current tournament is
-            completed.
-          </p>
-        </div>
-      </main>
-    );
+  const activeTournament =
+    tournaments.find((tournament) => tournament.status === "IN_PROGRESS") ??
+    tournaments.find((tournament) => tournament.status === "READY");
+
+  if (activeTournament) {
+    redirect(`/tournaments/${activeTournament.id}`);
   }
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
-      <ReadyTournament tournament={readyTournament} players={players} />
+      <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-8">
+        <p className="text-sm font-semibold uppercase tracking-widest text-zinc-500">
+          Tournament status
+        </p>
+
+        <h1 className="mt-3 text-3xl font-black">No active tournament</h1>
+
+        <p className="mt-3 text-zinc-400">
+          There is currently no tournament ready or in progress.
+        </p>
+      </div>
     </main>
   );
 }

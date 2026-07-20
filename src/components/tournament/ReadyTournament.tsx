@@ -28,6 +28,7 @@ import type { Match, Player, Tournament } from "@/types/competition";
 
 type ReadyTournamentProps = {
   tournament: Tournament;
+  tournaments: Tournament[];
   players: Player[];
   nextTournamentGenerated?: boolean;
   editable?: boolean;
@@ -35,6 +36,7 @@ type ReadyTournamentProps = {
 
 export default function ReadyTournament({
   tournament,
+  tournaments,
   players,
   nextTournamentGenerated = false,
   editable = false,
@@ -61,12 +63,12 @@ export default function ReadyTournament({
   }, [tournament.id]);
 
   useEffect(() => {
-    if (!hydrated || competition.tournamentId !== tournament.id) {
+    if (!editable || !hydrated || competition.tournamentId !== tournament.id) {
       return;
     }
 
     saveCompetitionState(competition);
-  }, [competition, hydrated, tournament.id]);
+  }, [competition, editable, hydrated, tournament.id]);
 
   const view = useMemo(
     () => getCompetitionView(competition, nextTournamentGenerated),
@@ -130,7 +132,10 @@ export default function ReadyTournament({
 
   return (
     <section>
-      <TournamentNavigation currentTournamentId={tournament.id} />
+      <TournamentNavigation
+        currentTournamentId={tournament.id}
+        tournaments={tournaments}
+      />
 
       <TournamentHeader
         tournament={tournament}
@@ -158,14 +163,18 @@ export default function ReadyTournament({
         />
       )}
 
-
       {hydrated && view.groupsGenerated && (
         <div className="mt-8 space-y-6">
           {competition.mentorDraft && (
             <MentorDraftSection
               draft={competition.mentorDraft}
-              players={[...competition.groupAPlayers, ...competition.groupBPlayers]}
-              groupAPlayerIds={competition.groupAPlayers.map((player) => player.id)}
+              players={[
+                ...competition.groupAPlayers,
+                ...competition.groupBPlayers,
+              ]}
+              groupAPlayerIds={competition.groupAPlayers.map(
+                (player) => player.id,
+              )}
               onPick={handleMentorPick}
               editable={editable}
             />
@@ -232,7 +241,8 @@ function ReadOnlyWaitingState() {
         Tournament not started
       </p>
       <p className="mt-3 text-zinc-400">
-        An administrator must generate the groups before public tournament details appear.
+        An administrator must generate the groups before public tournament
+        details appear.
       </p>
     </div>
   );

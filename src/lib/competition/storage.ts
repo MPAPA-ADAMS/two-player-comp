@@ -1,7 +1,6 @@
 
 import type { CompetitionState } from "@/lib/competition/engine";
 import { createMentorDraft } from "@/lib/competition/mentors";
-import { getMockCompetitionState } from "@/lib/mockData";
 import type { Tournament } from "@/types/competition";
 
 const STORAGE_PREFIX = "tits-and-ass:competition";
@@ -30,36 +29,42 @@ export function loadCompetitionState(
   tournamentId: Tournament["id"],
 ): CompetitionState | null {
   if (typeof window === "undefined") {
-    return getMockCompetitionState(tournamentId);
+    return null;
   }
 
   try {
-    const rawValue = window.localStorage.getItem(
-      getStorageKey(tournamentId),
-    );
+    const storageKey = getStorageKey(tournamentId);
+    const rawValue =
+      window.localStorage.getItem(storageKey);
 
     if (!rawValue) {
-      return getMockCompetitionState(tournamentId);
+      return null;
     }
 
     const storedValue: unknown = JSON.parse(rawValue);
 
-    if (!isStoredCompetition(storedValue, tournamentId)) {
-      window.localStorage.removeItem(
-        getStorageKey(tournamentId),
-      );
+    if (
+      !isStoredCompetition(
+        storedValue,
+        tournamentId,
+      )
+    ) {
+      window.localStorage.removeItem(storageKey);
 
-      return getMockCompetitionState(tournamentId);
+      return null;
     }
 
-    return (
-      normalizeCompetitionState(
-        storedValue.state,
-        tournamentId,
-      ) ?? getMockCompetitionState(tournamentId)
+    return normalizeCompetitionState(
+      storedValue.state,
+      tournamentId,
     );
-  } catch {
-    return getMockCompetitionState(tournamentId);
+  } catch (error) {
+    console.error(
+      `Failed to load competition state for tournament ${tournamentId}.`,
+      error,
+    );
+
+    return null;
   }
 }
 
@@ -70,29 +75,45 @@ export function saveCompetitionState(
     return false;
   }
 
-  writeLocalState(state, new Date().toISOString());
-
-  window.dispatchEvent(
-    new Event(COMPETITION_PROGRESS_EVENT),
+  writeLocalState(
+    state,
+    new Date().toISOString(),
   );
 
-  void fetch(`/api/competition/${state.tournamentId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
+  dispatchCompetitionProgressEvent();
+
+  void fetch(
+    `/api/competition/${state.tournamentId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "same-origin",
+      body: JSON.stringify({ state }),
     },
-    credentials: "same-origin",
-    body: JSON.stringify({ state }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        console.error(
-          `Database save failed for tournament ${state.tournamentId}.`,
-        );
-      }
-    })
+  )
+    .then(async (response) => {
+  if (response.ok) {
+    return;
+  }
+
+  const errorBody = await response.text();
+
+  console.error(
+    `Database save failed for tournament ${state.tournamentId}.`,
+    {
+      status: response.status,
+      statusText: response.statusText,
+      body: errorBody,
+    },
+  );
+})
     .catch((error: unknown) => {
-      console.error("Database save failed.", error);
+      console.error(
+        `Database save failed for tournament ${state.tournamentId}.`,
+        error,
+      );
     });
 
   return true;
@@ -109,9 +130,7 @@ export function clearCompetitionState(
     getStorageKey(tournamentId),
   );
 
-  window.dispatchEvent(
-    new Event(COMPETITION_PROGRESS_EVENT),
-  );
+  dispatchCompetitionProgressEvent();
 
   return true;
 }
@@ -119,11 +138,14 @@ export function clearCompetitionState(
 export function loadCompetitionStates(
   tournamentIds: Tournament["id"][],
 ): CompetitionState[] {
-  return tournamentIds.flatMap((tournamentId) => {
-    const state = loadCompetitionState(tournamentId);
+  return tournamentIds.flatMap(
+    (tournamentId) => {
+      const state =
+        loadCompetitionState(tournamentId);
 
-    return state ? [state] : [];
-  });
+      return state ? [state] : [];
+    },
+  );
 }
 
 export async function syncCompetitionStatesFromDatabase(): Promise<void> {
@@ -132,13 +154,18 @@ export async function syncCompetitionStatesFromDatabase(): Promise<void> {
   }
 
   try {
-    const response = await fetch("/api/competition", {
-      cache: "no-store",
-      credentials: "same-origin",
-    });
+    const response = await fetch(
+      "/api/competition",
+      {
+        cache: "no-store",
+        credentials: "same-origin",
+      },
+    );
 
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+      throw new Error(
+        `HTTP ${response.status}`,
+      );
     }
 
     const data =
@@ -149,6 +176,8 @@ export async function syncCompetitionStatesFromDatabase(): Promise<void> {
         "Invalid response from /api/competition: records is not an array.",
       );
     }
+
+    clearStoredCompetitionStates();
 
     for (const record of data.records) {
       const normalizedState =
@@ -167,13 +196,12 @@ export async function syncCompetitionStatesFromDatabase(): Promise<void> {
 
       writeLocalState(
         normalizedState,
-        record.updatedAt ?? new Date().toISOString(),
+        record.updatedAt ??
+          new Date().toISOString(),
       );
     }
 
-    window.dispatchEvent(
-      new Event(COMPETITION_PROGRESS_EVENT),
-    );
+    dispatchCompetitionProgressEvent();
   } catch (error) {
     console.error(
       "Could not synchronise competition data from PostgreSQL.",
@@ -198,19 +226,42 @@ function writeLocalState(
   );
 }
 
+function clearStoredCompetitionStates(): void {
+  const prefix =
+    `${STORAGE_PREFIX}:v${STORAGE_VERSION}:tournament:`;
+
+  const keysToRemove: string[] = [];
+
+  for (
+    let index = 0;
+    index < window.localStorage.length;
+    index += 1
+  ) {
+    const key =
+      window.localStorage.key(index);
+
+    if (key?.startsWith(prefix)) {
+      keysToRemove.push(key);
+    }
+  }
+
+  for (const key of keysToRemove) {
+    window.localStorage.removeItem(key);
+  }
+}
+
 function normalizeCompetitionState(
   value: unknown,
   expectedTournamentId?: number,
 ): CompetitionState | null {
   if (!isCompetitionState(value)) {
-    return expectedTournamentId !== undefined
-      ? getMockCompetitionState(expectedTournamentId)
-      : null;
+    return null;
   }
 
   if (
     expectedTournamentId !== undefined &&
-    value.tournamentId !== expectedTournamentId
+    value.tournamentId !==
+      expectedTournamentId
   ) {
     return null;
   }
@@ -219,7 +270,10 @@ function normalizeCompetitionState(
     value.groupAPlayers.length === 4 &&
     value.groupBPlayers.length === 4;
 
-  if (!groupsGenerated || value.mentorDraft) {
+  if (
+    !groupsGenerated ||
+    value.mentorDraft
+  ) {
     return value;
   }
 
@@ -239,7 +293,8 @@ function isCompetitionState(
   }
 
   return (
-    typeof value.tournamentId === "number" &&
+    typeof value.tournamentId ===
+      "number" &&
     Array.isArray(value.groupAPlayers) &&
     Array.isArray(value.groupBPlayers) &&
     Array.isArray(value.groupAFixtures) &&
@@ -278,17 +333,16 @@ function isStoredCompetition(
 
   return (
     typeof value.savedAt === "string" &&
-    isRecord(state) &&
-    state.tournamentId === tournamentId &&
-    Array.isArray(state.groupAPlayers) &&
-    Array.isArray(state.groupBPlayers) &&
-    Array.isArray(state.groupAFixtures) &&
-    Array.isArray(state.groupBFixtures) &&
-    Array.isArray(state.semifinals) &&
-    (
-      state.finalMatch === null ||
-      isRecord(state.finalMatch)
-    )
+    isCompetitionState(state) &&
+    state.tournamentId === tournamentId
+  );
+}
+
+function dispatchCompetitionProgressEvent(): void {
+  window.dispatchEvent(
+    new Event(
+      COMPETITION_PROGRESS_EVENT,
+    ),
   );
 }
 

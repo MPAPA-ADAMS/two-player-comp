@@ -182,8 +182,8 @@ export type MentorWhereInput = {
   active?: Prisma.BoolFilter<"Mentor"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Mentor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mentor"> | Date | string
-  draftPicks?: Prisma.MentorDraftPickListRelationFilter
   draftTurns?: Prisma.MentorDraftTurnListRelationFilter
+  draftPicks?: Prisma.MentorDraftPickListRelationFilter
 }
 
 export type MentorOrderByWithRelationInput = {
@@ -192,8 +192,8 @@ export type MentorOrderByWithRelationInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  draftPicks?: Prisma.MentorDraftPickOrderByRelationAggregateInput
   draftTurns?: Prisma.MentorDraftTurnOrderByRelationAggregateInput
+  draftPicks?: Prisma.MentorDraftPickOrderByRelationAggregateInput
 }
 
 export type MentorWhereUniqueInput = Prisma.AtLeast<{
@@ -205,8 +205,8 @@ export type MentorWhereUniqueInput = Prisma.AtLeast<{
   active?: Prisma.BoolFilter<"Mentor"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Mentor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mentor"> | Date | string
-  draftPicks?: Prisma.MentorDraftPickListRelationFilter
   draftTurns?: Prisma.MentorDraftTurnListRelationFilter
+  draftPicks?: Prisma.MentorDraftPickListRelationFilter
 }, "id">
 
 export type MentorOrderByWithAggregationInput = {
@@ -232,23 +232,23 @@ export type MentorScalarWhereWithAggregatesInput = {
 }
 
 export type MentorCreateInput = {
-  id: string
+  id?: string
   name: string
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  draftPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutMentorInput
   draftTurns?: Prisma.MentorDraftTurnCreateNestedManyWithoutMentorInput
+  draftPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutMentorInput
 }
 
 export type MentorUncheckedCreateInput = {
-  id: string
+  id?: string
   name: string
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  draftPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutMentorInput
   draftTurns?: Prisma.MentorDraftTurnUncheckedCreateNestedManyWithoutMentorInput
+  draftPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutMentorInput
 }
 
 export type MentorUpdateInput = {
@@ -257,8 +257,8 @@ export type MentorUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  draftPicks?: Prisma.MentorDraftPickUpdateManyWithoutMentorNestedInput
   draftTurns?: Prisma.MentorDraftTurnUpdateManyWithoutMentorNestedInput
+  draftPicks?: Prisma.MentorDraftPickUpdateManyWithoutMentorNestedInput
 }
 
 export type MentorUncheckedUpdateInput = {
@@ -267,12 +267,12 @@ export type MentorUncheckedUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  draftPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutMentorNestedInput
   draftTurns?: Prisma.MentorDraftTurnUncheckedUpdateManyWithoutMentorNestedInput
+  draftPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutMentorNestedInput
 }
 
 export type MentorCreateManyInput = {
-  id: string
+  id?: string
   name: string
   active?: boolean
   createdAt?: Date | string
@@ -353,7 +353,7 @@ export type MentorUpdateOneRequiredWithoutDraftPicksNestedInput = {
 }
 
 export type MentorCreateWithoutDraftTurnsInput = {
-  id: string
+  id?: string
   name: string
   active?: boolean
   createdAt?: Date | string
@@ -362,7 +362,7 @@ export type MentorCreateWithoutDraftTurnsInput = {
 }
 
 export type MentorUncheckedCreateWithoutDraftTurnsInput = {
-  id: string
+  id?: string
   name: string
   active?: boolean
   createdAt?: Date | string
@@ -405,7 +405,7 @@ export type MentorUncheckedUpdateWithoutDraftTurnsInput = {
 }
 
 export type MentorCreateWithoutDraftPicksInput = {
-  id: string
+  id?: string
   name: string
   active?: boolean
   createdAt?: Date | string
@@ -414,7 +414,7 @@ export type MentorCreateWithoutDraftPicksInput = {
 }
 
 export type MentorUncheckedCreateWithoutDraftPicksInput = {
-  id: string
+  id?: string
   name: string
   active?: boolean
   createdAt?: Date | string
@@ -462,13 +462,13 @@ export type MentorUncheckedUpdateWithoutDraftPicksInput = {
  */
 
 export type MentorCountOutputType = {
-  draftPicks: number
   draftTurns: number
+  draftPicks: number
 }
 
 export type MentorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  draftPicks?: boolean | MentorCountOutputTypeCountDraftPicksArgs
   draftTurns?: boolean | MentorCountOutputTypeCountDraftTurnsArgs
+  draftPicks?: boolean | MentorCountOutputTypeCountDraftPicksArgs
 }
 
 /**
@@ -484,15 +484,15 @@ export type MentorCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * MentorCountOutputType without action
  */
-export type MentorCountOutputTypeCountDraftPicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MentorDraftPickWhereInput
+export type MentorCountOutputTypeCountDraftTurnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentorDraftTurnWhereInput
 }
 
 /**
  * MentorCountOutputType without action
  */
-export type MentorCountOutputTypeCountDraftTurnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MentorDraftTurnWhereInput
+export type MentorCountOutputTypeCountDraftPicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentorDraftPickWhereInput
 }
 
 
@@ -502,8 +502,8 @@ export type MentorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  draftPicks?: boolean | Prisma.Mentor$draftPicksArgs<ExtArgs>
   draftTurns?: boolean | Prisma.Mentor$draftTurnsArgs<ExtArgs>
+  draftPicks?: boolean | Prisma.Mentor$draftPicksArgs<ExtArgs>
   _count?: boolean | Prisma.MentorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mentor"]>
 
@@ -533,8 +533,8 @@ export type MentorSelectScalar = {
 
 export type MentorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["mentor"]>
 export type MentorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  draftPicks?: boolean | Prisma.Mentor$draftPicksArgs<ExtArgs>
   draftTurns?: boolean | Prisma.Mentor$draftTurnsArgs<ExtArgs>
+  draftPicks?: boolean | Prisma.Mentor$draftPicksArgs<ExtArgs>
   _count?: boolean | Prisma.MentorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MentorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -543,8 +543,8 @@ export type MentorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $MentorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Mentor"
   objects: {
-    draftPicks: Prisma.$MentorDraftPickPayload<ExtArgs>[]
     draftTurns: Prisma.$MentorDraftTurnPayload<ExtArgs>[]
+    draftPicks: Prisma.$MentorDraftPickPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -946,8 +946,8 @@ readonly fields: MentorFieldRefs;
  */
 export interface Prisma__MentorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  draftPicks<T extends Prisma.Mentor$draftPicksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mentor$draftPicksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorDraftPickPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   draftTurns<T extends Prisma.Mentor$draftTurnsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mentor$draftTurnsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorDraftTurnPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  draftPicks<T extends Prisma.Mentor$draftPicksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mentor$draftPicksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorDraftPickPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1375,30 +1375,6 @@ export type MentorDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Mentor.draftPicks
- */
-export type Mentor$draftPicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the MentorDraftPick
-   */
-  select?: Prisma.MentorDraftPickSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the MentorDraftPick
-   */
-  omit?: Prisma.MentorDraftPickOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MentorDraftPickInclude<ExtArgs> | null
-  where?: Prisma.MentorDraftPickWhereInput
-  orderBy?: Prisma.MentorDraftPickOrderByWithRelationInput | Prisma.MentorDraftPickOrderByWithRelationInput[]
-  cursor?: Prisma.MentorDraftPickWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MentorDraftPickScalarFieldEnum | Prisma.MentorDraftPickScalarFieldEnum[]
-}
-
-/**
  * Mentor.draftTurns
  */
 export type Mentor$draftTurnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1420,6 +1396,30 @@ export type Mentor$draftTurnsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.MentorDraftTurnScalarFieldEnum | Prisma.MentorDraftTurnScalarFieldEnum[]
+}
+
+/**
+ * Mentor.draftPicks
+ */
+export type Mentor$draftPicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MentorDraftPick
+   */
+  select?: Prisma.MentorDraftPickSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MentorDraftPick
+   */
+  omit?: Prisma.MentorDraftPickOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentorDraftPickInclude<ExtArgs> | null
+  where?: Prisma.MentorDraftPickWhereInput
+  orderBy?: Prisma.MentorDraftPickOrderByWithRelationInput | Prisma.MentorDraftPickOrderByWithRelationInput[]
+  cursor?: Prisma.MentorDraftPickWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MentorDraftPickScalarFieldEnum | Prisma.MentorDraftPickScalarFieldEnum[]
 }
 
 /**

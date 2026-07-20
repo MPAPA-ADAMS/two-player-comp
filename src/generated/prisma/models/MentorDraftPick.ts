@@ -40,6 +40,8 @@ export type MentorDraftPickMinAggregateOutputType = {
   pickNumber: number | null
   mentorId: string | null
   playerId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type MentorDraftPickMaxAggregateOutputType = {
@@ -48,6 +50,8 @@ export type MentorDraftPickMaxAggregateOutputType = {
   pickNumber: number | null
   mentorId: string | null
   playerId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type MentorDraftPickCountAggregateOutputType = {
@@ -56,6 +60,8 @@ export type MentorDraftPickCountAggregateOutputType = {
   pickNumber: number
   mentorId: number
   playerId: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -74,6 +80,8 @@ export type MentorDraftPickMinAggregateInputType = {
   pickNumber?: true
   mentorId?: true
   playerId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type MentorDraftPickMaxAggregateInputType = {
@@ -82,6 +90,8 @@ export type MentorDraftPickMaxAggregateInputType = {
   pickNumber?: true
   mentorId?: true
   playerId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type MentorDraftPickCountAggregateInputType = {
@@ -90,6 +100,8 @@ export type MentorDraftPickCountAggregateInputType = {
   pickNumber?: true
   mentorId?: true
   playerId?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -185,6 +197,8 @@ export type MentorDraftPickGroupByOutputType = {
   pickNumber: number
   mentorId: string
   playerId: string
+  createdAt: Date
+  updatedAt: Date
   _count: MentorDraftPickCountAggregateOutputType | null
   _avg: MentorDraftPickAvgAggregateOutputType | null
   _sum: MentorDraftPickSumAggregateOutputType | null
@@ -216,6 +230,8 @@ export type MentorDraftPickWhereInput = {
   pickNumber?: Prisma.IntFilter<"MentorDraftPick"> | number
   mentorId?: Prisma.StringFilter<"MentorDraftPick"> | string
   playerId?: Prisma.StringFilter<"MentorDraftPick"> | string
+  createdAt?: Prisma.DateTimeFilter<"MentorDraftPick"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"MentorDraftPick"> | Date | string
   draft?: Prisma.XOR<Prisma.MentorDraftScalarRelationFilter, Prisma.MentorDraftWhereInput>
   mentor?: Prisma.XOR<Prisma.MentorScalarRelationFilter, Prisma.MentorWhereInput>
   player?: Prisma.XOR<Prisma.PlayerScalarRelationFilter, Prisma.PlayerWhereInput>
@@ -227,6 +243,8 @@ export type MentorDraftPickOrderByWithRelationInput = {
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   draft?: Prisma.MentorDraftOrderByWithRelationInput
   mentor?: Prisma.MentorOrderByWithRelationInput
   player?: Prisma.PlayerOrderByWithRelationInput
@@ -243,6 +261,8 @@ export type MentorDraftPickWhereUniqueInput = Prisma.AtLeast<{
   pickNumber?: Prisma.IntFilter<"MentorDraftPick"> | number
   mentorId?: Prisma.StringFilter<"MentorDraftPick"> | string
   playerId?: Prisma.StringFilter<"MentorDraftPick"> | string
+  createdAt?: Prisma.DateTimeFilter<"MentorDraftPick"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"MentorDraftPick"> | Date | string
   draft?: Prisma.XOR<Prisma.MentorDraftScalarRelationFilter, Prisma.MentorDraftWhereInput>
   mentor?: Prisma.XOR<Prisma.MentorScalarRelationFilter, Prisma.MentorWhereInput>
   player?: Prisma.XOR<Prisma.PlayerScalarRelationFilter, Prisma.PlayerWhereInput>
@@ -254,6 +274,8 @@ export type MentorDraftPickOrderByWithAggregationInput = {
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.MentorDraftPickCountOrderByAggregateInput
   _avg?: Prisma.MentorDraftPickAvgOrderByAggregateInput
   _max?: Prisma.MentorDraftPickMaxOrderByAggregateInput
@@ -270,14 +292,18 @@ export type MentorDraftPickScalarWhereWithAggregatesInput = {
   pickNumber?: Prisma.IntWithAggregatesFilter<"MentorDraftPick"> | number
   mentorId?: Prisma.StringWithAggregatesFilter<"MentorDraftPick"> | string
   playerId?: Prisma.StringWithAggregatesFilter<"MentorDraftPick"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"MentorDraftPick"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MentorDraftPick"> | Date | string
 }
 
 export type MentorDraftPickCreateInput = {
   id: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   draft: Prisma.MentorDraftCreateNestedOneWithoutPicksInput
   mentor: Prisma.MentorCreateNestedOneWithoutDraftPicksInput
-  player: Prisma.PlayerCreateNestedOneWithoutMentorPicksInput
+  player: Prisma.PlayerCreateNestedOneWithoutMentorDraftPicksInput
 }
 
 export type MentorDraftPickUncheckedCreateInput = {
@@ -286,14 +312,18 @@ export type MentorDraftPickUncheckedCreateInput = {
   pickNumber: number
   mentorId: string
   playerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftPickUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   draft?: Prisma.MentorDraftUpdateOneRequiredWithoutPicksNestedInput
   mentor?: Prisma.MentorUpdateOneRequiredWithoutDraftPicksNestedInput
-  player?: Prisma.PlayerUpdateOneRequiredWithoutMentorPicksNestedInput
+  player?: Prisma.PlayerUpdateOneRequiredWithoutMentorDraftPicksNestedInput
 }
 
 export type MentorDraftPickUncheckedUpdateInput = {
@@ -302,6 +332,8 @@ export type MentorDraftPickUncheckedUpdateInput = {
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftPickCreateManyInput = {
@@ -310,11 +342,15 @@ export type MentorDraftPickCreateManyInput = {
   pickNumber: number
   mentorId: string
   playerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftPickUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftPickUncheckedUpdateManyInput = {
@@ -323,6 +359,8 @@ export type MentorDraftPickUncheckedUpdateManyInput = {
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftPickListRelationFilter = {
@@ -351,6 +389,8 @@ export type MentorDraftPickCountOrderByAggregateInput = {
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type MentorDraftPickAvgOrderByAggregateInput = {
@@ -363,6 +403,8 @@ export type MentorDraftPickMaxOrderByAggregateInput = {
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type MentorDraftPickMinOrderByAggregateInput = {
@@ -371,6 +413,8 @@ export type MentorDraftPickMinOrderByAggregateInput = {
   pickNumber?: Prisma.SortOrder
   mentorId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type MentorDraftPickSumOrderByAggregateInput = {
@@ -506,6 +550,8 @@ export type MentorDraftPickUncheckedUpdateManyWithoutDraftNestedInput = {
 export type MentorDraftPickCreateWithoutPlayerInput = {
   id: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   draft: Prisma.MentorDraftCreateNestedOneWithoutPicksInput
   mentor: Prisma.MentorCreateNestedOneWithoutDraftPicksInput
 }
@@ -515,6 +561,8 @@ export type MentorDraftPickUncheckedCreateWithoutPlayerInput = {
   draftId: string
   pickNumber: number
   mentorId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftPickCreateOrConnectWithoutPlayerInput = {
@@ -552,13 +600,17 @@ export type MentorDraftPickScalarWhereInput = {
   pickNumber?: Prisma.IntFilter<"MentorDraftPick"> | number
   mentorId?: Prisma.StringFilter<"MentorDraftPick"> | string
   playerId?: Prisma.StringFilter<"MentorDraftPick"> | string
+  createdAt?: Prisma.DateTimeFilter<"MentorDraftPick"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"MentorDraftPick"> | Date | string
 }
 
 export type MentorDraftPickCreateWithoutMentorInput = {
   id: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   draft: Prisma.MentorDraftCreateNestedOneWithoutPicksInput
-  player: Prisma.PlayerCreateNestedOneWithoutMentorPicksInput
+  player: Prisma.PlayerCreateNestedOneWithoutMentorDraftPicksInput
 }
 
 export type MentorDraftPickUncheckedCreateWithoutMentorInput = {
@@ -566,6 +618,8 @@ export type MentorDraftPickUncheckedCreateWithoutMentorInput = {
   draftId: string
   pickNumber: number
   playerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftPickCreateOrConnectWithoutMentorInput = {
@@ -597,8 +651,10 @@ export type MentorDraftPickUpdateManyWithWhereWithoutMentorInput = {
 export type MentorDraftPickCreateWithoutDraftInput = {
   id: string
   pickNumber: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   mentor: Prisma.MentorCreateNestedOneWithoutDraftPicksInput
-  player: Prisma.PlayerCreateNestedOneWithoutMentorPicksInput
+  player: Prisma.PlayerCreateNestedOneWithoutMentorDraftPicksInput
 }
 
 export type MentorDraftPickUncheckedCreateWithoutDraftInput = {
@@ -606,6 +662,8 @@ export type MentorDraftPickUncheckedCreateWithoutDraftInput = {
   pickNumber: number
   mentorId: string
   playerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftPickCreateOrConnectWithoutDraftInput = {
@@ -639,11 +697,15 @@ export type MentorDraftPickCreateManyPlayerInput = {
   draftId: string
   pickNumber: number
   mentorId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftPickUpdateWithoutPlayerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   draft?: Prisma.MentorDraftUpdateOneRequiredWithoutPicksNestedInput
   mentor?: Prisma.MentorUpdateOneRequiredWithoutDraftPicksNestedInput
 }
@@ -653,6 +715,8 @@ export type MentorDraftPickUncheckedUpdateWithoutPlayerInput = {
   draftId?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftPickUncheckedUpdateManyWithoutPlayerInput = {
@@ -660,6 +724,8 @@ export type MentorDraftPickUncheckedUpdateManyWithoutPlayerInput = {
   draftId?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftPickCreateManyMentorInput = {
@@ -667,13 +733,17 @@ export type MentorDraftPickCreateManyMentorInput = {
   draftId: string
   pickNumber: number
   playerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftPickUpdateWithoutMentorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   draft?: Prisma.MentorDraftUpdateOneRequiredWithoutPicksNestedInput
-  player?: Prisma.PlayerUpdateOneRequiredWithoutMentorPicksNestedInput
+  player?: Prisma.PlayerUpdateOneRequiredWithoutMentorDraftPicksNestedInput
 }
 
 export type MentorDraftPickUncheckedUpdateWithoutMentorInput = {
@@ -681,6 +751,8 @@ export type MentorDraftPickUncheckedUpdateWithoutMentorInput = {
   draftId?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftPickUncheckedUpdateManyWithoutMentorInput = {
@@ -688,6 +760,8 @@ export type MentorDraftPickUncheckedUpdateManyWithoutMentorInput = {
   draftId?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftPickCreateManyDraftInput = {
@@ -695,13 +769,17 @@ export type MentorDraftPickCreateManyDraftInput = {
   pickNumber: number
   mentorId: string
   playerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type MentorDraftPickUpdateWithoutDraftInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mentor?: Prisma.MentorUpdateOneRequiredWithoutDraftPicksNestedInput
-  player?: Prisma.PlayerUpdateOneRequiredWithoutMentorPicksNestedInput
+  player?: Prisma.PlayerUpdateOneRequiredWithoutMentorDraftPicksNestedInput
 }
 
 export type MentorDraftPickUncheckedUpdateWithoutDraftInput = {
@@ -709,6 +787,8 @@ export type MentorDraftPickUncheckedUpdateWithoutDraftInput = {
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MentorDraftPickUncheckedUpdateManyWithoutDraftInput = {
@@ -716,6 +796,8 @@ export type MentorDraftPickUncheckedUpdateManyWithoutDraftInput = {
   pickNumber?: Prisma.IntFieldUpdateOperationsInput | number
   mentorId?: Prisma.StringFieldUpdateOperationsInput | string
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -726,6 +808,8 @@ export type MentorDraftPickSelect<ExtArgs extends runtime.Types.Extensions.Inter
   pickNumber?: boolean
   mentorId?: boolean
   playerId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   draft?: boolean | Prisma.MentorDraftDefaultArgs<ExtArgs>
   mentor?: boolean | Prisma.MentorDefaultArgs<ExtArgs>
   player?: boolean | Prisma.PlayerDefaultArgs<ExtArgs>
@@ -737,6 +821,8 @@ export type MentorDraftPickSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   pickNumber?: boolean
   mentorId?: boolean
   playerId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   draft?: boolean | Prisma.MentorDraftDefaultArgs<ExtArgs>
   mentor?: boolean | Prisma.MentorDefaultArgs<ExtArgs>
   player?: boolean | Prisma.PlayerDefaultArgs<ExtArgs>
@@ -748,6 +834,8 @@ export type MentorDraftPickSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   pickNumber?: boolean
   mentorId?: boolean
   playerId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   draft?: boolean | Prisma.MentorDraftDefaultArgs<ExtArgs>
   mentor?: boolean | Prisma.MentorDefaultArgs<ExtArgs>
   player?: boolean | Prisma.PlayerDefaultArgs<ExtArgs>
@@ -759,9 +847,11 @@ export type MentorDraftPickSelectScalar = {
   pickNumber?: boolean
   mentorId?: boolean
   playerId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type MentorDraftPickOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "draftId" | "pickNumber" | "mentorId" | "playerId", ExtArgs["result"]["mentorDraftPick"]>
+export type MentorDraftPickOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "draftId" | "pickNumber" | "mentorId" | "playerId" | "createdAt" | "updatedAt", ExtArgs["result"]["mentorDraftPick"]>
 export type MentorDraftPickInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   draft?: boolean | Prisma.MentorDraftDefaultArgs<ExtArgs>
   mentor?: boolean | Prisma.MentorDefaultArgs<ExtArgs>
@@ -791,6 +881,8 @@ export type $MentorDraftPickPayload<ExtArgs extends runtime.Types.Extensions.Int
     pickNumber: number
     mentorId: string
     playerId: string
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["mentorDraftPick"]>
   composites: {}
 }
@@ -1222,6 +1314,8 @@ export interface MentorDraftPickFieldRefs {
   readonly pickNumber: Prisma.FieldRef<"MentorDraftPick", 'Int'>
   readonly mentorId: Prisma.FieldRef<"MentorDraftPick", 'String'>
   readonly playerId: Prisma.FieldRef<"MentorDraftPick", 'String'>
+  readonly createdAt: Prisma.FieldRef<"MentorDraftPick", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"MentorDraftPick", 'DateTime'>
 }
     
 

@@ -1,7 +1,17 @@
 import ReadyTournament from "@/components/tournament/ReadyTournament";
-import { players, tournaments } from "@/lib/mockData";
+import {
+  loadActiveSeasonTournaments,
+  loadCompetitionPlayers,
+} from "@/lib/competition/database/loadTournamentPages";
 
-export default function TournamentsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function TournamentsPage() {
+  const [tournaments, players] = await Promise.all([
+    loadActiveSeasonTournaments(),
+    loadCompetitionPlayers(),
+  ]);
+
   const readyTournament = tournaments.find(
     (tournament) => tournament.status === "READY",
   );
@@ -28,7 +38,11 @@ export default function TournamentsPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
-      <ReadyTournament tournament={readyTournament} players={players} />
+      <ReadyTournament
+        tournament={readyTournament}
+        tournaments={tournaments}
+        players={players}
+      />
     </main>
   );
 }

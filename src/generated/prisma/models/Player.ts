@@ -202,7 +202,7 @@ export type PlayerWhereInput = {
   matchesAsPlayer1?: Prisma.MatchListRelationFilter
   matchesAsPlayer2?: Prisma.MatchListRelationFilter
   matchesWon?: Prisma.MatchListRelationFilter
-  mentorPicks?: Prisma.MentorDraftPickListRelationFilter
+  mentorDraftPicks?: Prisma.MentorDraftPickListRelationFilter
 }
 
 export type PlayerOrderByWithRelationInput = {
@@ -217,7 +217,7 @@ export type PlayerOrderByWithRelationInput = {
   matchesAsPlayer1?: Prisma.MatchOrderByRelationAggregateInput
   matchesAsPlayer2?: Prisma.MatchOrderByRelationAggregateInput
   matchesWon?: Prisma.MatchOrderByRelationAggregateInput
-  mentorPicks?: Prisma.MentorDraftPickOrderByRelationAggregateInput
+  mentorDraftPicks?: Prisma.MentorDraftPickOrderByRelationAggregateInput
 }
 
 export type PlayerWhereUniqueInput = Prisma.AtLeast<{
@@ -235,7 +235,7 @@ export type PlayerWhereUniqueInput = Prisma.AtLeast<{
   matchesAsPlayer1?: Prisma.MatchListRelationFilter
   matchesAsPlayer2?: Prisma.MatchListRelationFilter
   matchesWon?: Prisma.MatchListRelationFilter
-  mentorPicks?: Prisma.MentorDraftPickListRelationFilter
+  mentorDraftPicks?: Prisma.MentorDraftPickListRelationFilter
 }, "id">
 
 export type PlayerOrderByWithAggregationInput = {
@@ -265,7 +265,7 @@ export type PlayerScalarWhereWithAggregatesInput = {
 }
 
 export type PlayerCreateInput = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -276,11 +276,11 @@ export type PlayerCreateInput = {
   matchesAsPlayer1?: Prisma.MatchCreateNestedManyWithoutPlayer1Input
   matchesAsPlayer2?: Prisma.MatchCreateNestedManyWithoutPlayer2Input
   matchesWon?: Prisma.MatchCreateNestedManyWithoutWinnerInput
-  mentorPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerUncheckedCreateInput = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -291,7 +291,7 @@ export type PlayerUncheckedCreateInput = {
   matchesAsPlayer1?: Prisma.MatchUncheckedCreateNestedManyWithoutPlayer1Input
   matchesAsPlayer2?: Prisma.MatchUncheckedCreateNestedManyWithoutPlayer2Input
   matchesWon?: Prisma.MatchUncheckedCreateNestedManyWithoutWinnerInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerUpdateInput = {
@@ -306,7 +306,7 @@ export type PlayerUpdateInput = {
   matchesAsPlayer1?: Prisma.MatchUpdateManyWithoutPlayer1NestedInput
   matchesAsPlayer2?: Prisma.MatchUpdateManyWithoutPlayer2NestedInput
   matchesWon?: Prisma.MatchUpdateManyWithoutWinnerNestedInput
-  mentorPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerUncheckedUpdateInput = {
@@ -321,11 +321,11 @@ export type PlayerUncheckedUpdateInput = {
   matchesAsPlayer1?: Prisma.MatchUncheckedUpdateManyWithoutPlayer1NestedInput
   matchesAsPlayer2?: Prisma.MatchUncheckedUpdateManyWithoutPlayer2NestedInput
   matchesWon?: Prisma.MatchUncheckedUpdateManyWithoutWinnerNestedInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerCreateManyInput = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -452,22 +452,22 @@ export type PlayerUpdateOneWithoutMatchesWonNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlayerUpdateToOneWithWhereWithoutMatchesWonInput, Prisma.PlayerUpdateWithoutMatchesWonInput>, Prisma.PlayerUncheckedUpdateWithoutMatchesWonInput>
 }
 
-export type PlayerCreateNestedOneWithoutMentorPicksInput = {
-  create?: Prisma.XOR<Prisma.PlayerCreateWithoutMentorPicksInput, Prisma.PlayerUncheckedCreateWithoutMentorPicksInput>
-  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutMentorPicksInput
+export type PlayerCreateNestedOneWithoutMentorDraftPicksInput = {
+  create?: Prisma.XOR<Prisma.PlayerCreateWithoutMentorDraftPicksInput, Prisma.PlayerUncheckedCreateWithoutMentorDraftPicksInput>
+  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutMentorDraftPicksInput
   connect?: Prisma.PlayerWhereUniqueInput
 }
 
-export type PlayerUpdateOneRequiredWithoutMentorPicksNestedInput = {
-  create?: Prisma.XOR<Prisma.PlayerCreateWithoutMentorPicksInput, Prisma.PlayerUncheckedCreateWithoutMentorPicksInput>
-  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutMentorPicksInput
-  upsert?: Prisma.PlayerUpsertWithoutMentorPicksInput
+export type PlayerUpdateOneRequiredWithoutMentorDraftPicksNestedInput = {
+  create?: Prisma.XOR<Prisma.PlayerCreateWithoutMentorDraftPicksInput, Prisma.PlayerUncheckedCreateWithoutMentorDraftPicksInput>
+  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutMentorDraftPicksInput
+  upsert?: Prisma.PlayerUpsertWithoutMentorDraftPicksInput
   connect?: Prisma.PlayerWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PlayerUpdateToOneWithWhereWithoutMentorPicksInput, Prisma.PlayerUpdateWithoutMentorPicksInput>, Prisma.PlayerUncheckedUpdateWithoutMentorPicksInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlayerUpdateToOneWithWhereWithoutMentorDraftPicksInput, Prisma.PlayerUpdateWithoutMentorDraftPicksInput>, Prisma.PlayerUncheckedUpdateWithoutMentorDraftPicksInput>
 }
 
 export type PlayerCreateWithoutGroupEntriesInput = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -477,11 +477,11 @@ export type PlayerCreateWithoutGroupEntriesInput = {
   matchesAsPlayer1?: Prisma.MatchCreateNestedManyWithoutPlayer1Input
   matchesAsPlayer2?: Prisma.MatchCreateNestedManyWithoutPlayer2Input
   matchesWon?: Prisma.MatchCreateNestedManyWithoutWinnerInput
-  mentorPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerUncheckedCreateWithoutGroupEntriesInput = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -491,7 +491,7 @@ export type PlayerUncheckedCreateWithoutGroupEntriesInput = {
   matchesAsPlayer1?: Prisma.MatchUncheckedCreateNestedManyWithoutPlayer1Input
   matchesAsPlayer2?: Prisma.MatchUncheckedCreateNestedManyWithoutPlayer2Input
   matchesWon?: Prisma.MatchUncheckedCreateNestedManyWithoutWinnerInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerCreateOrConnectWithoutGroupEntriesInput = {
@@ -521,7 +521,7 @@ export type PlayerUpdateWithoutGroupEntriesInput = {
   matchesAsPlayer1?: Prisma.MatchUpdateManyWithoutPlayer1NestedInput
   matchesAsPlayer2?: Prisma.MatchUpdateManyWithoutPlayer2NestedInput
   matchesWon?: Prisma.MatchUpdateManyWithoutWinnerNestedInput
-  mentorPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerUncheckedUpdateWithoutGroupEntriesInput = {
@@ -535,11 +535,11 @@ export type PlayerUncheckedUpdateWithoutGroupEntriesInput = {
   matchesAsPlayer1?: Prisma.MatchUncheckedUpdateManyWithoutPlayer1NestedInput
   matchesAsPlayer2?: Prisma.MatchUncheckedUpdateManyWithoutPlayer2NestedInput
   matchesWon?: Prisma.MatchUncheckedUpdateManyWithoutWinnerNestedInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerCreateWithoutMatchesAsPlayer1Input = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -549,11 +549,11 @@ export type PlayerCreateWithoutMatchesAsPlayer1Input = {
   groupEntries?: Prisma.GroupEntryCreateNestedManyWithoutPlayerInput
   matchesAsPlayer2?: Prisma.MatchCreateNestedManyWithoutPlayer2Input
   matchesWon?: Prisma.MatchCreateNestedManyWithoutWinnerInput
-  mentorPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerUncheckedCreateWithoutMatchesAsPlayer1Input = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -563,7 +563,7 @@ export type PlayerUncheckedCreateWithoutMatchesAsPlayer1Input = {
   groupEntries?: Prisma.GroupEntryUncheckedCreateNestedManyWithoutPlayerInput
   matchesAsPlayer2?: Prisma.MatchUncheckedCreateNestedManyWithoutPlayer2Input
   matchesWon?: Prisma.MatchUncheckedCreateNestedManyWithoutWinnerInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerCreateOrConnectWithoutMatchesAsPlayer1Input = {
@@ -572,7 +572,7 @@ export type PlayerCreateOrConnectWithoutMatchesAsPlayer1Input = {
 }
 
 export type PlayerCreateWithoutMatchesAsPlayer2Input = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -582,11 +582,11 @@ export type PlayerCreateWithoutMatchesAsPlayer2Input = {
   groupEntries?: Prisma.GroupEntryCreateNestedManyWithoutPlayerInput
   matchesAsPlayer1?: Prisma.MatchCreateNestedManyWithoutPlayer1Input
   matchesWon?: Prisma.MatchCreateNestedManyWithoutWinnerInput
-  mentorPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerUncheckedCreateWithoutMatchesAsPlayer2Input = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -596,7 +596,7 @@ export type PlayerUncheckedCreateWithoutMatchesAsPlayer2Input = {
   groupEntries?: Prisma.GroupEntryUncheckedCreateNestedManyWithoutPlayerInput
   matchesAsPlayer1?: Prisma.MatchUncheckedCreateNestedManyWithoutPlayer1Input
   matchesWon?: Prisma.MatchUncheckedCreateNestedManyWithoutWinnerInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerCreateOrConnectWithoutMatchesAsPlayer2Input = {
@@ -605,7 +605,7 @@ export type PlayerCreateOrConnectWithoutMatchesAsPlayer2Input = {
 }
 
 export type PlayerCreateWithoutMatchesWonInput = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -615,11 +615,11 @@ export type PlayerCreateWithoutMatchesWonInput = {
   groupEntries?: Prisma.GroupEntryCreateNestedManyWithoutPlayerInput
   matchesAsPlayer1?: Prisma.MatchCreateNestedManyWithoutPlayer1Input
   matchesAsPlayer2?: Prisma.MatchCreateNestedManyWithoutPlayer2Input
-  mentorPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerUncheckedCreateWithoutMatchesWonInput = {
-  id: string
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -629,7 +629,7 @@ export type PlayerUncheckedCreateWithoutMatchesWonInput = {
   groupEntries?: Prisma.GroupEntryUncheckedCreateNestedManyWithoutPlayerInput
   matchesAsPlayer1?: Prisma.MatchUncheckedCreateNestedManyWithoutPlayer1Input
   matchesAsPlayer2?: Prisma.MatchUncheckedCreateNestedManyWithoutPlayer2Input
-  mentorPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedCreateNestedManyWithoutPlayerInput
 }
 
 export type PlayerCreateOrConnectWithoutMatchesWonInput = {
@@ -659,7 +659,7 @@ export type PlayerUpdateWithoutMatchesAsPlayer1Input = {
   groupEntries?: Prisma.GroupEntryUpdateManyWithoutPlayerNestedInput
   matchesAsPlayer2?: Prisma.MatchUpdateManyWithoutPlayer2NestedInput
   matchesWon?: Prisma.MatchUpdateManyWithoutWinnerNestedInput
-  mentorPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerUncheckedUpdateWithoutMatchesAsPlayer1Input = {
@@ -673,7 +673,7 @@ export type PlayerUncheckedUpdateWithoutMatchesAsPlayer1Input = {
   groupEntries?: Prisma.GroupEntryUncheckedUpdateManyWithoutPlayerNestedInput
   matchesAsPlayer2?: Prisma.MatchUncheckedUpdateManyWithoutPlayer2NestedInput
   matchesWon?: Prisma.MatchUncheckedUpdateManyWithoutWinnerNestedInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerUpsertWithoutMatchesAsPlayer2Input = {
@@ -698,7 +698,7 @@ export type PlayerUpdateWithoutMatchesAsPlayer2Input = {
   groupEntries?: Prisma.GroupEntryUpdateManyWithoutPlayerNestedInput
   matchesAsPlayer1?: Prisma.MatchUpdateManyWithoutPlayer1NestedInput
   matchesWon?: Prisma.MatchUpdateManyWithoutWinnerNestedInput
-  mentorPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerUncheckedUpdateWithoutMatchesAsPlayer2Input = {
@@ -712,7 +712,7 @@ export type PlayerUncheckedUpdateWithoutMatchesAsPlayer2Input = {
   groupEntries?: Prisma.GroupEntryUncheckedUpdateManyWithoutPlayerNestedInput
   matchesAsPlayer1?: Prisma.MatchUncheckedUpdateManyWithoutPlayer1NestedInput
   matchesWon?: Prisma.MatchUncheckedUpdateManyWithoutWinnerNestedInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerUpsertWithoutMatchesWonInput = {
@@ -737,7 +737,7 @@ export type PlayerUpdateWithoutMatchesWonInput = {
   groupEntries?: Prisma.GroupEntryUpdateManyWithoutPlayerNestedInput
   matchesAsPlayer1?: Prisma.MatchUpdateManyWithoutPlayer1NestedInput
   matchesAsPlayer2?: Prisma.MatchUpdateManyWithoutPlayer2NestedInput
-  mentorPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUpdateManyWithoutPlayerNestedInput
 }
 
 export type PlayerUncheckedUpdateWithoutMatchesWonInput = {
@@ -751,11 +751,11 @@ export type PlayerUncheckedUpdateWithoutMatchesWonInput = {
   groupEntries?: Prisma.GroupEntryUncheckedUpdateManyWithoutPlayerNestedInput
   matchesAsPlayer1?: Prisma.MatchUncheckedUpdateManyWithoutPlayer1NestedInput
   matchesAsPlayer2?: Prisma.MatchUncheckedUpdateManyWithoutPlayer2NestedInput
-  mentorPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
+  mentorDraftPicks?: Prisma.MentorDraftPickUncheckedUpdateManyWithoutPlayerNestedInput
 }
 
-export type PlayerCreateWithoutMentorPicksInput = {
-  id: string
+export type PlayerCreateWithoutMentorDraftPicksInput = {
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -768,8 +768,8 @@ export type PlayerCreateWithoutMentorPicksInput = {
   matchesWon?: Prisma.MatchCreateNestedManyWithoutWinnerInput
 }
 
-export type PlayerUncheckedCreateWithoutMentorPicksInput = {
-  id: string
+export type PlayerUncheckedCreateWithoutMentorDraftPicksInput = {
+  id?: string
   name: string
   shortName: string
   colour: string
@@ -782,23 +782,23 @@ export type PlayerUncheckedCreateWithoutMentorPicksInput = {
   matchesWon?: Prisma.MatchUncheckedCreateNestedManyWithoutWinnerInput
 }
 
-export type PlayerCreateOrConnectWithoutMentorPicksInput = {
+export type PlayerCreateOrConnectWithoutMentorDraftPicksInput = {
   where: Prisma.PlayerWhereUniqueInput
-  create: Prisma.XOR<Prisma.PlayerCreateWithoutMentorPicksInput, Prisma.PlayerUncheckedCreateWithoutMentorPicksInput>
+  create: Prisma.XOR<Prisma.PlayerCreateWithoutMentorDraftPicksInput, Prisma.PlayerUncheckedCreateWithoutMentorDraftPicksInput>
 }
 
-export type PlayerUpsertWithoutMentorPicksInput = {
-  update: Prisma.XOR<Prisma.PlayerUpdateWithoutMentorPicksInput, Prisma.PlayerUncheckedUpdateWithoutMentorPicksInput>
-  create: Prisma.XOR<Prisma.PlayerCreateWithoutMentorPicksInput, Prisma.PlayerUncheckedCreateWithoutMentorPicksInput>
+export type PlayerUpsertWithoutMentorDraftPicksInput = {
+  update: Prisma.XOR<Prisma.PlayerUpdateWithoutMentorDraftPicksInput, Prisma.PlayerUncheckedUpdateWithoutMentorDraftPicksInput>
+  create: Prisma.XOR<Prisma.PlayerCreateWithoutMentorDraftPicksInput, Prisma.PlayerUncheckedCreateWithoutMentorDraftPicksInput>
   where?: Prisma.PlayerWhereInput
 }
 
-export type PlayerUpdateToOneWithWhereWithoutMentorPicksInput = {
+export type PlayerUpdateToOneWithWhereWithoutMentorDraftPicksInput = {
   where?: Prisma.PlayerWhereInput
-  data: Prisma.XOR<Prisma.PlayerUpdateWithoutMentorPicksInput, Prisma.PlayerUncheckedUpdateWithoutMentorPicksInput>
+  data: Prisma.XOR<Prisma.PlayerUpdateWithoutMentorDraftPicksInput, Prisma.PlayerUncheckedUpdateWithoutMentorDraftPicksInput>
 }
 
-export type PlayerUpdateWithoutMentorPicksInput = {
+export type PlayerUpdateWithoutMentorDraftPicksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -812,7 +812,7 @@ export type PlayerUpdateWithoutMentorPicksInput = {
   matchesWon?: Prisma.MatchUpdateManyWithoutWinnerNestedInput
 }
 
-export type PlayerUncheckedUpdateWithoutMentorPicksInput = {
+export type PlayerUncheckedUpdateWithoutMentorDraftPicksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -836,7 +836,7 @@ export type PlayerCountOutputType = {
   matchesAsPlayer1: number
   matchesAsPlayer2: number
   matchesWon: number
-  mentorPicks: number
+  mentorDraftPicks: number
 }
 
 export type PlayerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -844,7 +844,7 @@ export type PlayerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   matchesAsPlayer1?: boolean | PlayerCountOutputTypeCountMatchesAsPlayer1Args
   matchesAsPlayer2?: boolean | PlayerCountOutputTypeCountMatchesAsPlayer2Args
   matchesWon?: boolean | PlayerCountOutputTypeCountMatchesWonArgs
-  mentorPicks?: boolean | PlayerCountOutputTypeCountMentorPicksArgs
+  mentorDraftPicks?: boolean | PlayerCountOutputTypeCountMentorDraftPicksArgs
 }
 
 /**
@@ -888,7 +888,7 @@ export type PlayerCountOutputTypeCountMatchesWonArgs<ExtArgs extends runtime.Typ
 /**
  * PlayerCountOutputType without action
  */
-export type PlayerCountOutputTypeCountMentorPicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type PlayerCountOutputTypeCountMentorDraftPicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.MentorDraftPickWhereInput
 }
 
@@ -905,7 +905,7 @@ export type PlayerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   matchesAsPlayer1?: boolean | Prisma.Player$matchesAsPlayer1Args<ExtArgs>
   matchesAsPlayer2?: boolean | Prisma.Player$matchesAsPlayer2Args<ExtArgs>
   matchesWon?: boolean | Prisma.Player$matchesWonArgs<ExtArgs>
-  mentorPicks?: boolean | Prisma.Player$mentorPicksArgs<ExtArgs>
+  mentorDraftPicks?: boolean | Prisma.Player$mentorDraftPicksArgs<ExtArgs>
   _count?: boolean | Prisma.PlayerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["player"]>
 
@@ -945,7 +945,7 @@ export type PlayerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   matchesAsPlayer1?: boolean | Prisma.Player$matchesAsPlayer1Args<ExtArgs>
   matchesAsPlayer2?: boolean | Prisma.Player$matchesAsPlayer2Args<ExtArgs>
   matchesWon?: boolean | Prisma.Player$matchesWonArgs<ExtArgs>
-  mentorPicks?: boolean | Prisma.Player$mentorPicksArgs<ExtArgs>
+  mentorDraftPicks?: boolean | Prisma.Player$mentorDraftPicksArgs<ExtArgs>
   _count?: boolean | Prisma.PlayerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlayerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -958,7 +958,7 @@ export type $PlayerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     matchesAsPlayer1: Prisma.$MatchPayload<ExtArgs>[]
     matchesAsPlayer2: Prisma.$MatchPayload<ExtArgs>[]
     matchesWon: Prisma.$MatchPayload<ExtArgs>[]
-    mentorPicks: Prisma.$MentorDraftPickPayload<ExtArgs>[]
+    mentorDraftPicks: Prisma.$MentorDraftPickPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1366,7 +1366,7 @@ export interface Prisma__PlayerClient<T, Null = never, ExtArgs extends runtime.T
   matchesAsPlayer1<T extends Prisma.Player$matchesAsPlayer1Args<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Player$matchesAsPlayer1Args<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   matchesAsPlayer2<T extends Prisma.Player$matchesAsPlayer2Args<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Player$matchesAsPlayer2Args<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   matchesWon<T extends Prisma.Player$matchesWonArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Player$matchesWonArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  mentorPicks<T extends Prisma.Player$mentorPicksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Player$mentorPicksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorDraftPickPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mentorDraftPicks<T extends Prisma.Player$mentorDraftPicksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Player$mentorDraftPicksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorDraftPickPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1892,9 +1892,9 @@ export type Player$matchesWonArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Player.mentorPicks
+ * Player.mentorDraftPicks
  */
-export type Player$mentorPicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Player$mentorDraftPicksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the MentorDraftPick
    */

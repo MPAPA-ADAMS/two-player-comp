@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Season: 'Season',
+  Game: 'Game',
   Player: 'Player',
   Mentor: 'Mentor',
   Tournament: 'Tournament',
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "season" | "player" | "mentor" | "tournament" | "tournamentGroup" | "groupEntry" | "match" | "mentorDraft" | "mentorDraftTurn" | "mentorDraftPick"
+    modelProps: "season" | "game" | "player" | "mentor" | "tournament" | "tournamentGroup" | "groupEntry" | "match" | "mentorDraft" | "mentorDraftTurn" | "mentorDraftPick"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -484,6 +485,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.SeasonCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SeasonCountAggregateOutputType> | number
+        }
+      }
+    }
+    Game: {
+      payload: Prisma.$GamePayload<ExtArgs>
+      fields: Prisma.GameFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GameFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GameFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>
+        }
+        findFirst: {
+          args: Prisma.GameFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GameFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>
+        }
+        findMany: {
+          args: Prisma.GameFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>[]
+        }
+        create: {
+          args: Prisma.GameCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>
+        }
+        createMany: {
+          args: Prisma.GameCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GameCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>[]
+        }
+        delete: {
+          args: Prisma.GameDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>
+        }
+        update: {
+          args: Prisma.GameUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>
+        }
+        deleteMany: {
+          args: Prisma.GameDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GameUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GameUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>[]
+        }
+        upsert: {
+          args: Prisma.GameUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamePayload>
+        }
+        aggregate: {
+          args: Prisma.GameAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGame>
+        }
+        groupBy: {
+          args: Prisma.GameGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GameGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GameCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GameCountAggregateOutputType> | number
         }
       }
     }
@@ -1204,6 +1279,17 @@ export const SeasonScalarFieldEnum = {
 export type SeasonScalarFieldEnum = (typeof SeasonScalarFieldEnum)[keyof typeof SeasonScalarFieldEnum]
 
 
+export const GameScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  seasonId: 'seasonId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GameScalarFieldEnum = (typeof GameScalarFieldEnum)[keyof typeof GameScalarFieldEnum]
+
+
 export const PlayerScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1245,7 +1331,9 @@ export type TournamentScalarFieldEnum = (typeof TournamentScalarFieldEnum)[keyof
 export const TournamentGroupScalarFieldEnum = {
   id: 'id',
   tournamentId: 'tournamentId',
-  name: 'name'
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type TournamentGroupScalarFieldEnum = (typeof TournamentGroupScalarFieldEnum)[keyof typeof TournamentGroupScalarFieldEnum]
@@ -1255,7 +1343,9 @@ export const GroupEntryScalarFieldEnum = {
   id: 'id',
   groupId: 'groupId',
   playerId: 'playerId',
-  seed: 'seed'
+  seed: 'seed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type GroupEntryScalarFieldEnum = (typeof GroupEntryScalarFieldEnum)[keyof typeof GroupEntryScalarFieldEnum]
@@ -1269,10 +1359,10 @@ export const MatchScalarFieldEnum = {
   round: 'round',
   player1Id: 'player1Id',
   player2Id: 'player2Id',
+  winnerId: 'winnerId',
   player1Rounds: 'player1Rounds',
   player2Rounds: 'player2Rounds',
   completed: 'completed',
-  winnerId: 'winnerId',
   playedAt: 'playedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1296,7 +1386,9 @@ export const MentorDraftTurnScalarFieldEnum = {
   id: 'id',
   draftId: 'draftId',
   pickNumber: 'pickNumber',
-  mentorId: 'mentorId'
+  mentorId: 'mentorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type MentorDraftTurnScalarFieldEnum = (typeof MentorDraftTurnScalarFieldEnum)[keyof typeof MentorDraftTurnScalarFieldEnum]
@@ -1307,7 +1399,9 @@ export const MentorDraftPickScalarFieldEnum = {
   draftId: 'draftId',
   pickNumber: 'pickNumber',
   mentorId: 'mentorId',
-  playerId: 'playerId'
+  playerId: 'playerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type MentorDraftPickScalarFieldEnum = (typeof MentorDraftPickScalarFieldEnum)[keyof typeof MentorDraftPickScalarFieldEnum]
@@ -1403,20 +1497,6 @@ export type EnumTournamentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'TournamentStatus[]'
  */
 export type ListEnumTournamentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TournamentStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'GroupName'
- */
-export type EnumGroupNameFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GroupName'>
-    
-
-
-/**
- * Reference to a field of type 'GroupName[]'
- */
-export type ListEnumGroupNameFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GroupName[]'>
     
 
 
@@ -1558,6 +1638,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   season?: Prisma.SeasonOmit
+  game?: Prisma.GameOmit
   player?: Prisma.PlayerOmit
   mentor?: Prisma.MentorOmit
   tournament?: Prisma.TournamentOmit

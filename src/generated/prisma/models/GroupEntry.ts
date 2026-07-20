@@ -39,6 +39,8 @@ export type GroupEntryMinAggregateOutputType = {
   groupId: string | null
   playerId: string | null
   seed: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type GroupEntryMaxAggregateOutputType = {
@@ -46,6 +48,8 @@ export type GroupEntryMaxAggregateOutputType = {
   groupId: string | null
   playerId: string | null
   seed: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type GroupEntryCountAggregateOutputType = {
@@ -53,6 +57,8 @@ export type GroupEntryCountAggregateOutputType = {
   groupId: number
   playerId: number
   seed: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -70,6 +76,8 @@ export type GroupEntryMinAggregateInputType = {
   groupId?: true
   playerId?: true
   seed?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type GroupEntryMaxAggregateInputType = {
@@ -77,6 +85,8 @@ export type GroupEntryMaxAggregateInputType = {
   groupId?: true
   playerId?: true
   seed?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type GroupEntryCountAggregateInputType = {
@@ -84,6 +94,8 @@ export type GroupEntryCountAggregateInputType = {
   groupId?: true
   playerId?: true
   seed?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -178,6 +190,8 @@ export type GroupEntryGroupByOutputType = {
   groupId: string
   playerId: string
   seed: number
+  createdAt: Date
+  updatedAt: Date
   _count: GroupEntryCountAggregateOutputType | null
   _avg: GroupEntryAvgAggregateOutputType | null
   _sum: GroupEntrySumAggregateOutputType | null
@@ -208,6 +222,8 @@ export type GroupEntryWhereInput = {
   groupId?: Prisma.StringFilter<"GroupEntry"> | string
   playerId?: Prisma.StringFilter<"GroupEntry"> | string
   seed?: Prisma.IntFilter<"GroupEntry"> | number
+  createdAt?: Prisma.DateTimeFilter<"GroupEntry"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"GroupEntry"> | Date | string
   group?: Prisma.XOR<Prisma.TournamentGroupScalarRelationFilter, Prisma.TournamentGroupWhereInput>
   player?: Prisma.XOR<Prisma.PlayerScalarRelationFilter, Prisma.PlayerWhereInput>
 }
@@ -217,6 +233,8 @@ export type GroupEntryOrderByWithRelationInput = {
   groupId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
   seed?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   group?: Prisma.TournamentGroupOrderByWithRelationInput
   player?: Prisma.PlayerOrderByWithRelationInput
 }
@@ -231,6 +249,8 @@ export type GroupEntryWhereUniqueInput = Prisma.AtLeast<{
   groupId?: Prisma.StringFilter<"GroupEntry"> | string
   playerId?: Prisma.StringFilter<"GroupEntry"> | string
   seed?: Prisma.IntFilter<"GroupEntry"> | number
+  createdAt?: Prisma.DateTimeFilter<"GroupEntry"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"GroupEntry"> | Date | string
   group?: Prisma.XOR<Prisma.TournamentGroupScalarRelationFilter, Prisma.TournamentGroupWhereInput>
   player?: Prisma.XOR<Prisma.PlayerScalarRelationFilter, Prisma.PlayerWhereInput>
 }, "id" | "groupId_playerId" | "groupId_seed">
@@ -240,6 +260,8 @@ export type GroupEntryOrderByWithAggregationInput = {
   groupId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
   seed?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.GroupEntryCountOrderByAggregateInput
   _avg?: Prisma.GroupEntryAvgOrderByAggregateInput
   _max?: Prisma.GroupEntryMaxOrderByAggregateInput
@@ -255,11 +277,15 @@ export type GroupEntryScalarWhereWithAggregatesInput = {
   groupId?: Prisma.StringWithAggregatesFilter<"GroupEntry"> | string
   playerId?: Prisma.StringWithAggregatesFilter<"GroupEntry"> | string
   seed?: Prisma.IntWithAggregatesFilter<"GroupEntry"> | number
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"GroupEntry"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"GroupEntry"> | Date | string
 }
 
 export type GroupEntryCreateInput = {
   id: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   group: Prisma.TournamentGroupCreateNestedOneWithoutEntriesInput
   player: Prisma.PlayerCreateNestedOneWithoutGroupEntriesInput
 }
@@ -269,11 +295,15 @@ export type GroupEntryUncheckedCreateInput = {
   groupId: string
   playerId: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GroupEntryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   group?: Prisma.TournamentGroupUpdateOneRequiredWithoutEntriesNestedInput
   player?: Prisma.PlayerUpdateOneRequiredWithoutGroupEntriesNestedInput
 }
@@ -283,6 +313,8 @@ export type GroupEntryUncheckedUpdateInput = {
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GroupEntryCreateManyInput = {
@@ -290,11 +322,15 @@ export type GroupEntryCreateManyInput = {
   groupId: string
   playerId: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GroupEntryUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GroupEntryUncheckedUpdateManyInput = {
@@ -302,6 +338,8 @@ export type GroupEntryUncheckedUpdateManyInput = {
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GroupEntryListRelationFilter = {
@@ -329,6 +367,8 @@ export type GroupEntryCountOrderByAggregateInput = {
   groupId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
   seed?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type GroupEntryAvgOrderByAggregateInput = {
@@ -340,6 +380,8 @@ export type GroupEntryMaxOrderByAggregateInput = {
   groupId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
   seed?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type GroupEntryMinOrderByAggregateInput = {
@@ -347,6 +389,8 @@ export type GroupEntryMinOrderByAggregateInput = {
   groupId?: Prisma.SortOrder
   playerId?: Prisma.SortOrder
   seed?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type GroupEntrySumOrderByAggregateInput = {
@@ -440,6 +484,8 @@ export type GroupEntryUncheckedUpdateManyWithoutGroupNestedInput = {
 export type GroupEntryCreateWithoutPlayerInput = {
   id: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   group: Prisma.TournamentGroupCreateNestedOneWithoutEntriesInput
 }
 
@@ -447,6 +493,8 @@ export type GroupEntryUncheckedCreateWithoutPlayerInput = {
   id: string
   groupId: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GroupEntryCreateOrConnectWithoutPlayerInput = {
@@ -483,11 +531,15 @@ export type GroupEntryScalarWhereInput = {
   groupId?: Prisma.StringFilter<"GroupEntry"> | string
   playerId?: Prisma.StringFilter<"GroupEntry"> | string
   seed?: Prisma.IntFilter<"GroupEntry"> | number
+  createdAt?: Prisma.DateTimeFilter<"GroupEntry"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"GroupEntry"> | Date | string
 }
 
 export type GroupEntryCreateWithoutGroupInput = {
   id: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   player: Prisma.PlayerCreateNestedOneWithoutGroupEntriesInput
 }
 
@@ -495,6 +547,8 @@ export type GroupEntryUncheckedCreateWithoutGroupInput = {
   id: string
   playerId: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GroupEntryCreateOrConnectWithoutGroupInput = {
@@ -527,11 +581,15 @@ export type GroupEntryCreateManyPlayerInput = {
   id: string
   groupId: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GroupEntryUpdateWithoutPlayerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   group?: Prisma.TournamentGroupUpdateOneRequiredWithoutEntriesNestedInput
 }
 
@@ -539,23 +597,31 @@ export type GroupEntryUncheckedUpdateWithoutPlayerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GroupEntryUncheckedUpdateManyWithoutPlayerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GroupEntryCreateManyGroupInput = {
   id: string
   playerId: string
   seed: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GroupEntryUpdateWithoutGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   player?: Prisma.PlayerUpdateOneRequiredWithoutGroupEntriesNestedInput
 }
 
@@ -563,12 +629,16 @@ export type GroupEntryUncheckedUpdateWithoutGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GroupEntryUncheckedUpdateManyWithoutGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   playerId?: Prisma.StringFieldUpdateOperationsInput | string
   seed?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -578,6 +648,8 @@ export type GroupEntrySelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   groupId?: boolean
   playerId?: boolean
   seed?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   group?: boolean | Prisma.TournamentGroupDefaultArgs<ExtArgs>
   player?: boolean | Prisma.PlayerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["groupEntry"]>
@@ -587,6 +659,8 @@ export type GroupEntrySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   groupId?: boolean
   playerId?: boolean
   seed?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   group?: boolean | Prisma.TournamentGroupDefaultArgs<ExtArgs>
   player?: boolean | Prisma.PlayerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["groupEntry"]>
@@ -596,6 +670,8 @@ export type GroupEntrySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   groupId?: boolean
   playerId?: boolean
   seed?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   group?: boolean | Prisma.TournamentGroupDefaultArgs<ExtArgs>
   player?: boolean | Prisma.PlayerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["groupEntry"]>
@@ -605,9 +681,11 @@ export type GroupEntrySelectScalar = {
   groupId?: boolean
   playerId?: boolean
   seed?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type GroupEntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupId" | "playerId" | "seed", ExtArgs["result"]["groupEntry"]>
+export type GroupEntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupId" | "playerId" | "seed" | "createdAt" | "updatedAt", ExtArgs["result"]["groupEntry"]>
 export type GroupEntryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   group?: boolean | Prisma.TournamentGroupDefaultArgs<ExtArgs>
   player?: boolean | Prisma.PlayerDefaultArgs<ExtArgs>
@@ -632,6 +710,8 @@ export type $GroupEntryPayload<ExtArgs extends runtime.Types.Extensions.Internal
     groupId: string
     playerId: string
     seed: number
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["groupEntry"]>
   composites: {}
 }
@@ -1061,6 +1141,8 @@ export interface GroupEntryFieldRefs {
   readonly groupId: Prisma.FieldRef<"GroupEntry", 'String'>
   readonly playerId: Prisma.FieldRef<"GroupEntry", 'String'>
   readonly seed: Prisma.FieldRef<"GroupEntry", 'Int'>
+  readonly createdAt: Prisma.FieldRef<"GroupEntry", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"GroupEntry", 'DateTime'>
 }
     
 
