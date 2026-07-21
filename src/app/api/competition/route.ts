@@ -9,6 +9,22 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const seasons = await prisma.season.findMany({
+    select: {
+      id: true,
+      name: true,
+      isActive: true,
+      _count: {
+        select: {
+          tournaments: true,
+        },
+      },
+    },
+    orderBy: {
+      id: "asc",
+    },
+  });
+
   const tournaments =
     await prisma.tournament.findMany({
       where: {
@@ -18,6 +34,9 @@ export async function GET() {
       },
       select: {
         id: true,
+        name: true,
+        seasonId: true,
+        status: true,
       },
       orderBy: {
         id: "asc",
@@ -36,8 +55,7 @@ export async function GET() {
     state
       ? [
           {
-            tournamentId:
-              state.tournamentId,
+            tournamentId: state.tournamentId,
             state,
           },
         ]
@@ -45,6 +63,14 @@ export async function GET() {
   );
 
   return NextResponse.json({
+    diagnostic: {
+      build: "competition-diagnostic-1",
+      environment:
+        process.env.VERCEL_ENV ?? "unknown",
+      seasons,
+      activeTournaments: tournaments,
+      loadedStateCount: records.length,
+    },
     records,
   });
 }
