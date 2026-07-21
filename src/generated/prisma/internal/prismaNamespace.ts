@@ -1321,6 +1321,7 @@ export const TournamentScalarFieldEnum = {
   game: 'game',
   bestOf: 'bestOf',
   status: 'status',
+  mentorsEnabled: 'mentorsEnabled',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

@@ -45,6 +45,7 @@ export type TournamentMinAggregateOutputType = {
   game: string | null
   bestOf: number | null
   status: $Enums.TournamentStatus | null
+  mentorsEnabled: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +57,7 @@ export type TournamentMaxAggregateOutputType = {
   game: string | null
   bestOf: number | null
   status: $Enums.TournamentStatus | null
+  mentorsEnabled: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -67,6 +69,7 @@ export type TournamentCountAggregateOutputType = {
   game: number
   bestOf: number
   status: number
+  mentorsEnabled: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -92,6 +95,7 @@ export type TournamentMinAggregateInputType = {
   game?: true
   bestOf?: true
   status?: true
+  mentorsEnabled?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -103,6 +107,7 @@ export type TournamentMaxAggregateInputType = {
   game?: true
   bestOf?: true
   status?: true
+  mentorsEnabled?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -114,6 +119,7 @@ export type TournamentCountAggregateInputType = {
   game?: true
   bestOf?: true
   status?: true
+  mentorsEnabled?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -212,6 +218,7 @@ export type TournamentGroupByOutputType = {
   game: string
   bestOf: number
   status: $Enums.TournamentStatus
+  mentorsEnabled: boolean
   createdAt: Date
   updatedAt: Date
   _count: TournamentCountAggregateOutputType | null
@@ -246,6 +253,7 @@ export type TournamentWhereInput = {
   game?: Prisma.StringFilter<"Tournament"> | string
   bestOf?: Prisma.IntFilter<"Tournament"> | number
   status?: Prisma.EnumTournamentStatusFilter<"Tournament"> | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFilter<"Tournament"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tournament"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tournament"> | Date | string
   season?: Prisma.XOR<Prisma.SeasonScalarRelationFilter, Prisma.SeasonWhereInput>
@@ -261,6 +269,7 @@ export type TournamentOrderByWithRelationInput = {
   game?: Prisma.SortOrder
   bestOf?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  mentorsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   season?: Prisma.SeasonOrderByWithRelationInput
@@ -279,6 +288,7 @@ export type TournamentWhereUniqueInput = Prisma.AtLeast<{
   game?: Prisma.StringFilter<"Tournament"> | string
   bestOf?: Prisma.IntFilter<"Tournament"> | number
   status?: Prisma.EnumTournamentStatusFilter<"Tournament"> | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFilter<"Tournament"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tournament"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tournament"> | Date | string
   season?: Prisma.XOR<Prisma.SeasonScalarRelationFilter, Prisma.SeasonWhereInput>
@@ -294,6 +304,7 @@ export type TournamentOrderByWithAggregationInput = {
   game?: Prisma.SortOrder
   bestOf?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  mentorsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TournamentCountOrderByAggregateInput
@@ -313,6 +324,7 @@ export type TournamentScalarWhereWithAggregatesInput = {
   game?: Prisma.StringWithAggregatesFilter<"Tournament"> | string
   bestOf?: Prisma.IntWithAggregatesFilter<"Tournament"> | number
   status?: Prisma.EnumTournamentStatusWithAggregatesFilter<"Tournament"> | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolWithAggregatesFilter<"Tournament"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tournament"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tournament"> | Date | string
 }
@@ -322,6 +334,7 @@ export type TournamentCreateInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   season: Prisma.SeasonCreateNestedOneWithoutTournamentsInput
@@ -337,6 +350,7 @@ export type TournamentUncheckedCreateInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   groups?: Prisma.TournamentGroupUncheckedCreateNestedManyWithoutTournamentInput
@@ -349,6 +363,7 @@ export type TournamentUpdateInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   season?: Prisma.SeasonUpdateOneRequiredWithoutTournamentsNestedInput
@@ -364,6 +379,7 @@ export type TournamentUncheckedUpdateInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groups?: Prisma.TournamentGroupUncheckedUpdateManyWithoutTournamentNestedInput
@@ -378,6 +394,7 @@ export type TournamentCreateManyInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -387,6 +404,7 @@ export type TournamentUpdateManyMutationInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -398,6 +416,7 @@ export type TournamentUncheckedUpdateManyInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -419,6 +438,7 @@ export type TournamentCountOrderByAggregateInput = {
   game?: Prisma.SortOrder
   bestOf?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  mentorsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -436,6 +456,7 @@ export type TournamentMaxOrderByAggregateInput = {
   game?: Prisma.SortOrder
   bestOf?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  mentorsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -447,6 +468,7 @@ export type TournamentMinOrderByAggregateInput = {
   game?: Prisma.SortOrder
   bestOf?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  mentorsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -555,6 +577,7 @@ export type TournamentCreateWithoutSeasonInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   groups?: Prisma.TournamentGroupCreateNestedManyWithoutTournamentInput
@@ -568,6 +591,7 @@ export type TournamentUncheckedCreateWithoutSeasonInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   groups?: Prisma.TournamentGroupUncheckedCreateNestedManyWithoutTournamentInput
@@ -611,6 +635,7 @@ export type TournamentScalarWhereInput = {
   game?: Prisma.StringFilter<"Tournament"> | string
   bestOf?: Prisma.IntFilter<"Tournament"> | number
   status?: Prisma.EnumTournamentStatusFilter<"Tournament"> | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFilter<"Tournament"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tournament"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tournament"> | Date | string
 }
@@ -620,6 +645,7 @@ export type TournamentCreateWithoutGroupsInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   season: Prisma.SeasonCreateNestedOneWithoutTournamentsInput
@@ -634,6 +660,7 @@ export type TournamentUncheckedCreateWithoutGroupsInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   matches?: Prisma.MatchUncheckedCreateNestedManyWithoutTournamentInput
@@ -661,6 +688,7 @@ export type TournamentUpdateWithoutGroupsInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   season?: Prisma.SeasonUpdateOneRequiredWithoutTournamentsNestedInput
@@ -675,6 +703,7 @@ export type TournamentUncheckedUpdateWithoutGroupsInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   matches?: Prisma.MatchUncheckedUpdateManyWithoutTournamentNestedInput
@@ -686,6 +715,7 @@ export type TournamentCreateWithoutMatchesInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   season: Prisma.SeasonCreateNestedOneWithoutTournamentsInput
@@ -700,6 +730,7 @@ export type TournamentUncheckedCreateWithoutMatchesInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   groups?: Prisma.TournamentGroupUncheckedCreateNestedManyWithoutTournamentInput
@@ -727,6 +758,7 @@ export type TournamentUpdateWithoutMatchesInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   season?: Prisma.SeasonUpdateOneRequiredWithoutTournamentsNestedInput
@@ -741,6 +773,7 @@ export type TournamentUncheckedUpdateWithoutMatchesInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groups?: Prisma.TournamentGroupUncheckedUpdateManyWithoutTournamentNestedInput
@@ -752,6 +785,7 @@ export type TournamentCreateWithoutMentorDraftInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   season: Prisma.SeasonCreateNestedOneWithoutTournamentsInput
@@ -766,6 +800,7 @@ export type TournamentUncheckedCreateWithoutMentorDraftInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   groups?: Prisma.TournamentGroupUncheckedCreateNestedManyWithoutTournamentInput
@@ -793,6 +828,7 @@ export type TournamentUpdateWithoutMentorDraftInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   season?: Prisma.SeasonUpdateOneRequiredWithoutTournamentsNestedInput
@@ -807,6 +843,7 @@ export type TournamentUncheckedUpdateWithoutMentorDraftInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groups?: Prisma.TournamentGroupUncheckedUpdateManyWithoutTournamentNestedInput
@@ -819,6 +856,7 @@ export type TournamentCreateManySeasonInput = {
   game: string
   bestOf?: number
   status?: $Enums.TournamentStatus
+  mentorsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -828,6 +866,7 @@ export type TournamentUpdateWithoutSeasonInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groups?: Prisma.TournamentGroupUpdateManyWithoutTournamentNestedInput
@@ -841,6 +880,7 @@ export type TournamentUncheckedUpdateWithoutSeasonInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groups?: Prisma.TournamentGroupUncheckedUpdateManyWithoutTournamentNestedInput
@@ -854,6 +894,7 @@ export type TournamentUncheckedUpdateManyWithoutSeasonInput = {
   game?: Prisma.StringFieldUpdateOperationsInput | string
   bestOf?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumTournamentStatusFieldUpdateOperationsInput | $Enums.TournamentStatus
+  mentorsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -905,6 +946,7 @@ export type TournamentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   game?: boolean
   bestOf?: boolean
   status?: boolean
+  mentorsEnabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   season?: boolean | Prisma.SeasonDefaultArgs<ExtArgs>
@@ -921,6 +963,7 @@ export type TournamentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   game?: boolean
   bestOf?: boolean
   status?: boolean
+  mentorsEnabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   season?: boolean | Prisma.SeasonDefaultArgs<ExtArgs>
@@ -933,6 +976,7 @@ export type TournamentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   game?: boolean
   bestOf?: boolean
   status?: boolean
+  mentorsEnabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   season?: boolean | Prisma.SeasonDefaultArgs<ExtArgs>
@@ -945,11 +989,12 @@ export type TournamentSelectScalar = {
   game?: boolean
   bestOf?: boolean
   status?: boolean
+  mentorsEnabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TournamentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "seasonId" | "name" | "game" | "bestOf" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["tournament"]>
+export type TournamentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "seasonId" | "name" | "game" | "bestOf" | "status" | "mentorsEnabled" | "createdAt" | "updatedAt", ExtArgs["result"]["tournament"]>
 export type TournamentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   season?: boolean | Prisma.SeasonDefaultArgs<ExtArgs>
   groups?: boolean | Prisma.Tournament$groupsArgs<ExtArgs>
@@ -979,6 +1024,7 @@ export type $TournamentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     game: string
     bestOf: number
     status: $Enums.TournamentStatus
+    mentorsEnabled: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["tournament"]>
@@ -1414,6 +1460,7 @@ export interface TournamentFieldRefs {
   readonly game: Prisma.FieldRef<"Tournament", 'String'>
   readonly bestOf: Prisma.FieldRef<"Tournament", 'Int'>
   readonly status: Prisma.FieldRef<"Tournament", 'TournamentStatus'>
+  readonly mentorsEnabled: Prisma.FieldRef<"Tournament", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Tournament", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Tournament", 'DateTime'>
 }

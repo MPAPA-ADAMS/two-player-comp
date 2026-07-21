@@ -271,18 +271,17 @@ function normalizeCompetitionState(
     value.groupBPlayers.length === 4;
 
   if (
-    !groupsGenerated ||
-    value.mentorDraft
-  ) {
-    return value;
-  }
+  !groupsGenerated ||
+  value.mentorDraft ||
+  value.mentorDraftSkipped === true
+) {
+  return value;
+}
 
-  return {
-    ...value,
-    mentorDraft: createMentorDraft(
-      value.tournamentId,
-    ),
-  };
+return {
+  ...value,
+  mentorDraft: createMentorDraft(value.tournamentId),
+};
 }
 
 function isCompetitionState(
@@ -293,23 +292,24 @@ function isCompetitionState(
   }
 
   return (
-    typeof value.tournamentId ===
-      "number" &&
-    Array.isArray(value.groupAPlayers) &&
-    Array.isArray(value.groupBPlayers) &&
-    Array.isArray(value.groupAFixtures) &&
-    Array.isArray(value.groupBFixtures) &&
-    Array.isArray(value.semifinals) &&
-    (
-      value.finalMatch === null ||
-      isRecord(value.finalMatch)
-    ) &&
-    (
-      value.mentorDraft === null ||
-      value.mentorDraft === undefined ||
-      isRecord(value.mentorDraft)
-    )
-  );
+  typeof value.tournamentId === "number" &&
+  Array.isArray(value.groupAPlayers) &&
+  Array.isArray(value.groupBPlayers) &&
+  Array.isArray(value.groupAFixtures) &&
+  Array.isArray(value.groupBFixtures) &&
+  Array.isArray(value.semifinals) &&
+  (value.finalMatch === null ||
+    isRecord(value.finalMatch)) &&
+  (
+    value.mentorDraft === null ||
+    value.mentorDraft === undefined ||
+    isRecord(value.mentorDraft)
+  ) &&
+  (
+    value.mentorDraftSkipped === undefined ||
+    typeof value.mentorDraftSkipped === "boolean"
+  )
+);
 }
 
 function getStorageKey(

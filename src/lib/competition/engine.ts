@@ -27,6 +27,7 @@ export type CompetitionState = {
   semifinals: Match[];
   finalMatch: Match | null;
   mentorDraft?: MentorDraft | null;
+  mentorDraftSkipped?: boolean;
 };
 
 export type CompetitionAction =
@@ -88,6 +89,7 @@ export function createCompetitionState(
     semifinals: [],
     finalMatch: null,
     mentorDraft: null,
+    mentorDraftSkipped: false,
   };
 }
 
@@ -148,7 +150,7 @@ export function getCompetitionView(
     state.semifinals.length === 2 &&
     state.semifinals.every((match) => match.completed);
   const tournamentComplete = state.finalMatch?.completed ?? false;
-  const mentorDraftComplete = state.mentorDraft?.completed ?? false;
+  const mentorDraftComplete = state.mentorDraftSkipped === true || state.mentorDraft?.completed === true;
 
   return {
     groupAStandings,

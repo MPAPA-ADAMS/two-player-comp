@@ -78,12 +78,13 @@ model Mentor {
 }
 
 model Tournament {
-  id       Int              @id @default(autoincrement())
-  seasonId Int
-  name     String
-  game     String
-  bestOf   Int              @default(3)
-  status   TournamentStatus @default(READY)
+  id             Int              @id @default(autoincrement())
+  seasonId       Int
+  name           String
+  game           String
+  bestOf         Int              @default(3)
+  status         TournamentStatus @default(READY)
+  mentorsEnabled Boolean          @default(true)
 
   season      Season            @relation(fields: [seasonId], references: [id], onDelete: Cascade)
   groups      TournamentGroup[]
