@@ -10,37 +10,41 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   const tournaments =
-  await prisma.tournament.findMany({
-    where: {
-      season: {
-        isActive: true,
+    await prisma.tournament.findMany({
+      where: {
+        season: {
+          isActive: true,
+        },
       },
-    },
-    select: {
-      id: true,
-    },
-    orderBy: {
-      id: "asc",
-    },
-  });
+      select: {
+        id: true,
+      },
+      orderBy: {
+        id: "asc",
+      },
+    });
 
-const states = await Promise.all(
-  tournaments.map((tournament) =>
-    loadCompetitionStateFromDatabase(
-      tournament.id,
+  const states = await Promise.all(
+    tournaments.map((tournament) =>
+      loadCompetitionStateFromDatabase(
+        tournament.id,
+      ),
     ),
-  ),
-);
+  );
 
-  const records = states
-    .filter(
-      (state): state is NonNullable<typeof state> =>
-        state !== null,
-    )
-    .map((state) => ({
-      tournamentId: state.tournamentId,
-      state,
-    }));
+  const records = states.flatMap((state) =>
+    state
+      ? [
+          {
+            tournamentId:
+              state.tournamentId,
+            state,
+          },
+        ]
+      : [],
+  );
 
-  return NextResponse.json({ records });
+  return NextResponse.json({
+    records,
+  });
 }
