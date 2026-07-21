@@ -14,7 +14,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-xl leading-8 text-zinc-300">
-            Eight players. Eight tournaments. One season champion.
+            Tournament In Tabletop Simulator &amp; At Someones Shack
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">

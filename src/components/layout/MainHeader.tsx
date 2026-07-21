@@ -86,7 +86,7 @@ export default function MainHeader() {
             </span>
 
             <span className="block text-xs text-zinc-500">
-              Championship Series
+              Get Your Ass Wiped
             </span>
           </span>
         </Link>
