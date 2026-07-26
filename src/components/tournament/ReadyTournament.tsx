@@ -17,11 +17,11 @@ import {
   competitionReducer,
   createCompetitionState,
   getCompetitionView,
+  type CompetitionState,
   type GroupName,
 } from "@/lib/competition/engine";
 import {
   clearCompetitionState,
-  loadCompetitionState,
   saveCompetitionState,
 } from "@/lib/competition/storage";
 import type { Match, Player, Tournament } from "@/types/competition";
@@ -43,6 +43,10 @@ export default function ReadyTournament({
 }: ReadyTournamentProps) {
   const [activeTab, setActiveTab] = useState<TournamentTab>("A");
   const [hydrated, setHydrated] = useState(false);
+
+  const [persistenceReady, setPersistenceReady] = useState(false);
+
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [competition, dispatch] = useReducer(
     competitionReducer,
     tournament.id,
@@ -50,25 +54,87 @@ export default function ReadyTournament({
   );
 
   useEffect(() => {
-    setHydrated(false);
+    let cancelled = false;
 
-    const storedState = loadCompetitionState(tournament.id);
+    async function hydrateFromDatabase(): Promise<void> {
+      setHydrated(false);
+      setPersistenceReady(false);
+      setLoadError(null);
 
-    dispatch({
-      type: "HYDRATE",
-      state: storedState ?? createCompetitionState(tournament.id),
-    });
-    setActiveTab("A");
-    setHydrated(true);
+      try {
+        const response = await fetch(`/api/competition/${tournament.id}`, {
+          cache: "no-store",
+          credentials: "same-origin",
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = (await response.json()) as {
+          state?: CompetitionState;
+        };
+
+        if (!payload.state) {
+          throw new Error(
+            "The database response contained no competition state.",
+          );
+        }
+
+        if (cancelled) {
+          return;
+        }
+
+        dispatch({
+          type: "HYDRATE",
+          state: payload.state,
+        });
+
+        setActiveTab("A");
+        setPersistenceReady(true);
+        setHydrated(true);
+      } catch (error: unknown) {
+        if (cancelled) {
+          return;
+        }
+
+        console.error(
+          `Failed to load tournament ${tournament.id} from PostgreSQL.`,
+          error,
+        );
+
+        /*
+         * Crucially, persistence remains disabled.
+         * An empty initial state must never overwrite
+         * existing database records.
+         */
+        setLoadError(
+          "Could not load this tournament from the database. " +
+            "No changes have been saved.",
+        );
+
+        setHydrated(true);
+      }
+    }
+
+    void hydrateFromDatabase();
+
+    return () => {
+      cancelled = true;
+    };
   }, [tournament.id]);
-
   useEffect(() => {
-    if (!editable || !hydrated || competition.tournamentId !== tournament.id) {
+    if (
+      !editable ||
+      !hydrated ||
+      !persistenceReady ||
+      competition.tournamentId !== tournament.id
+    ) {
       return;
     }
 
     saveCompetitionState(competition);
-  }, [competition, editable, hydrated, tournament.id]);
+  }, [competition, editable, hydrated, persistenceReady, tournament.id]);
 
   const view = useMemo(
     () => getCompetitionView(competition, nextTournamentGenerated),
@@ -146,7 +212,16 @@ export default function ReadyTournament({
         onReset={editable ? handleReset : undefined}
       />
 
-      {!hydrated ? (
+      {loadError ? (
+        <div
+          role="alert"
+          className="rounded-2xl border border-red-900 bg-red-950/30 p-6"
+        >
+          <p className="font-bold text-red-300">Tournament data unavailable</p>
+
+          <p className="mt-2 text-sm text-red-200">{loadError}</p>
+        </div>
+      ) : !hydrated ? (
         <TournamentLoadingState />
       ) : !view.groupsGenerated ? (
         editable ? (
